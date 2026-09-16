@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion, type Variants } from "framer-motion";
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 32 },
@@ -144,17 +145,25 @@ export default function Home() {
                 }}
                 style={{ translateX: "15%" }}
               >
-                <motion.img
-                  src="/logo/profile.jpg"
-                  alt="Profile"
-                  className="absolute inset-0 w-full h-full object-cover scale-[1.35]"
+                <motion.div
+                  className="absolute inset-0 w-full h-full scale-[1.35]"
                   animate={{ 
                     rotate: [-15, -11, -15]
                   }}
                   transition={{ 
                     rotate: { duration: 5, ease: "easeInOut", repeat: Infinity, repeatType: "loop" }
                   }}
-                />
+                >
+                  <Image
+                    src="/logo/profile.webp"
+                    alt="Abdullah - Software Developer & Automation Specialist"
+                    fill
+                    priority
+                    sizes="(max-width: 640px) 240px, (max-width: 768px) 285px, 345px"
+                    className="object-cover"
+                    quality={85}
+                  />
+                </motion.div>
               </motion.div>
             </motion.div>
           </div>

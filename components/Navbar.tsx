@@ -2,16 +2,37 @@
 
 import * as React from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useTheme } from "next-themes";
-import { Moon, Sun } from "lucide-react";
+import { Moon, Sun, Menu, X, ArrowUpRight } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 export function Navbar() {
   const { theme, setTheme, resolvedTheme } = useTheme();
   const [mounted, setMounted] = React.useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
+  const pathname = usePathname();
 
   React.useEffect(() => {
     setMounted(true);
   }, []);
+
+  // Close mobile menu on route changes
+  React.useEffect(() => {
+    setMobileMenuOpen(false);
+  }, [pathname]);
+
+  // Lock body scroll when mobile menu is active
+  React.useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [mobileMenuOpen]);
 
   const toggleTheme = (e: React.MouseEvent) => {
     const isDark = resolvedTheme === "dark";
@@ -61,63 +82,174 @@ export function Navbar() {
   ];
 
   return (
-    <header className="absolute top-0 left-0 right-0 z-50 flex justify-center w-full pt-8 pb-4 border-b border-neutral-200/50 dark:border-neutral-800/50 bg-background/50 backdrop-blur-sm">
-      <nav className="flex items-center justify-between w-full max-w-7xl px-6 md:px-12">
-        
-        {/* Logo */}
-        <Link href="/" className="flex flex-col text-2xl md:text-3xl font-black leading-none tracking-tighter uppercase text-black dark:text-white">
-          <span>ABDULLAH</span>
-          <span>
-            <span className="text-[#80eb34]">.</span>DEV
-          </span>
-        </Link>
-
-        {/* Right side container */}
-        <div className="flex items-center">
+    <>
+      <header className="absolute top-0 left-0 right-0 z-50 flex justify-center w-full pt-8 pb-4 border-b border-neutral-200/50 dark:border-neutral-800/50 bg-background/50 backdrop-blur-sm">
+        <nav className="flex items-center justify-between w-full max-w-7xl px-6 md:px-12">
           
-          {/* Links */}
-          <div className="hidden md:flex items-center gap-6 lg:gap-8 mr-6">
-            {navLinks.map((link) => (
-              <Link 
-                key={link.name} 
-                href={link.href}
-                className="relative group font-norwester text-base lg:text-lg uppercase tracking-wide text-black hover:text-[#80eb34] dark:text-white dark:hover:text-[#80eb34] transition-colors"
+          {/* Logo */}
+          <Link 
+            href="/" 
+            className="flex flex-col text-2xl md:text-3xl font-black leading-none tracking-tighter uppercase text-black dark:text-white z-50"
+            onClick={() => setMobileMenuOpen(false)}
+          >
+            <span>ABDULLAH</span>
+            <span>
+              <span className="text-[#80eb34]">.</span>DEV
+            </span>
+          </Link>
+
+          {/* Right side container */}
+          <div className="flex items-center gap-3">
+            
+            {/* Desktop Links */}
+            <div className="hidden md:flex items-center gap-6 lg:gap-8 mr-4">
+              {navLinks.map((link) => {
+                const isActive = pathname === link.href;
+                return (
+                  <Link 
+                    key={link.name} 
+                    href={link.href}
+                    className={`relative group font-norwester text-base lg:text-lg uppercase tracking-wide transition-colors ${
+                      isActive 
+                        ? "text-[#5cba1d] dark:text-[#80eb34]" 
+                        : "text-black hover:text-[#80eb34] dark:text-white dark:hover:text-[#80eb34]"
+                    }`}
+                  >
+                    {link.name}
+                    <span className={`absolute -bottom-1 left-0 w-full h-[3px] bg-[#80eb34] transition-transform origin-left duration-300 ease-out ${
+                      isActive ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
+                    }`} />
+                  </Link>
+                );
+              })}
+            </div>
+
+            {/* Theme Toggle Button */}
+            <div className="relative">
+              <div className="absolute inset-0 bg-[#80eb34] rounded-xl translate-x-[3px] translate-y-[3px] md:translate-x-[5px] md:translate-y-[5px]" />
+              <button
+                onClick={toggleTheme}
+                className="relative w-10 h-10 md:w-11 md:h-11 flex items-center justify-center bg-black dark:bg-white text-white dark:text-black rounded-xl hover:-translate-y-[1px] hover:-translate-x-[1px] active:translate-y-[2px] active:translate-x-[2px] transition-all cursor-pointer"
+                aria-label="Toggle theme"
               >
-                {link.name}
-                <span className="absolute -bottom-1 left-0 w-full h-[3px] bg-[#80eb34] scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300 ease-out"></span>
-              </Link>
-            ))}
-          </div>
+                {mounted ? (
+                  <div className="relative flex items-center justify-center w-5 h-5">
+                    <Sun 
+                      className={`absolute transition-all duration-500 ease-in-out ${resolvedTheme === 'dark' ? 'opacity-100 rotate-0 scale-100' : 'opacity-0 -rotate-90 scale-50'}`} 
+                      size={18} 
+                      strokeWidth={2.5} 
+                    />
+                    <Moon 
+                      className={`absolute transition-all duration-500 ease-in-out ${resolvedTheme === 'light' ? 'opacity-100 rotate-0 scale-100' : 'opacity-0 rotate-90 scale-50'}`} 
+                      size={18} 
+                      strokeWidth={2.5} 
+                    />
+                  </div>
+                ) : (
+                  <div className="w-[18px] h-[18px]" />
+                )}
+              </button>
+            </div>
 
-          {/* Theme Toggle Button */}
-          <div className="relative">
-            <div className="absolute inset-0 bg-[#80eb34] rounded-xl translate-x-[4px] translate-y-[4px] md:translate-x-[6px] md:translate-y-[6px]" />
-            <button
-              onClick={toggleTheme}
-              className="relative w-10 h-10 md:w-12 md:h-12 flex items-center justify-center bg-black dark:bg-white text-white dark:text-black rounded-xl hover:-translate-y-[1px] hover:-translate-x-[1px] active:translate-y-[2px] active:translate-x-[2px] transition-all"
-              aria-label="Toggle theme"
+            {/* Mobile Hamburger / Close Button */}
+            <div className="relative md:hidden">
+              <div className="absolute inset-0 bg-[#80eb34] rounded-xl translate-x-[3px] translate-y-[3px]" />
+              <button
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                className="relative w-10 h-10 flex items-center justify-center bg-black dark:bg-white text-white dark:text-black rounded-xl hover:-translate-y-[1px] hover:-translate-x-[1px] active:translate-y-[2px] active:translate-x-[2px] transition-all cursor-pointer z-50"
+                aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+                aria-expanded={mobileMenuOpen}
+              >
+                {mobileMenuOpen ? (
+                  <X size={20} strokeWidth={2.5} />
+                ) : (
+                  <Menu size={20} strokeWidth={2.5} />
+                )}
+              </button>
+            </div>
+
+          </div>
+        </nav>
+      </header>
+
+      {/* Mobile Drawer Overlay */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 z-40 bg-background/95 backdrop-blur-xl md:hidden flex flex-col justify-between px-8 pt-36 pb-12 overflow-y-auto"
+          >
+            {/* Background Decorative Accent */}
+            <div className="absolute top-1/4 -right-20 w-72 h-72 bg-[#80eb34]/10 rounded-full blur-3xl pointer-events-none" />
+
+            {/* Links List */}
+            <div className="flex flex-col gap-5 my-auto">
+              <span className="font-mono text-xs uppercase tracking-widest text-[#5cba1d] dark:text-[#80eb34] font-semibold">
+                Menu Navigation
+              </span>
+
+              {navLinks.map((link, idx) => {
+                const isActive = pathname === link.href;
+                return (
+                  <motion.div
+                    key={link.name}
+                    initial={{ opacity: 0, x: -25 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: idx * 0.06 + 0.1, duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                  >
+                    <Link
+                      href={link.href}
+                      onClick={() => setMobileMenuOpen(false)}
+                      className={`group flex items-center justify-between font-norwester text-3xl sm:text-4xl uppercase tracking-tight py-2 border-b border-neutral-200/60 dark:border-neutral-800/60 transition-colors ${
+                        isActive
+                          ? "text-[#5cba1d] dark:text-[#80eb34]"
+                          : "text-black dark:text-white hover:text-[#5cba1d] dark:hover:text-[#80eb34]"
+                      }`}
+                    >
+                      <span>{link.name}</span>
+                      <ArrowUpRight 
+                        size={24} 
+                        className={`transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1 ${
+                          isActive ? "text-[#5cba1d] dark:text-[#80eb34]" : "text-neutral-400 dark:text-neutral-600"
+                        }`} 
+                      />
+                    </Link>
+                  </motion.div>
+                );
+              })}
+            </div>
+
+            {/* Bottom Drawer Footer */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.35, duration: 0.4 }}
+              className="flex flex-col gap-4 pt-8 border-t border-neutral-200 dark:border-neutral-800"
             >
-              {mounted ? (
-                <div className="relative flex items-center justify-center w-5 h-5">
-                  <Sun 
-                    className={`absolute transition-all duration-500 ease-in-out ${resolvedTheme === 'dark' ? 'opacity-100 rotate-0 scale-100' : 'opacity-0 -rotate-90 scale-50'}`} 
-                    size={20} 
-                    strokeWidth={2.5} 
-                  />
-                  <Moon 
-                    className={`absolute transition-all duration-500 ease-in-out ${resolvedTheme === 'light' ? 'opacity-100 rotate-0 scale-100' : 'opacity-0 rotate-90 scale-50'}`} 
-                    size={20} 
-                    strokeWidth={2.5} 
-                  />
-                </div>
-              ) : (
-                <div className="w-[20px] h-[20px]" />
-              )}
-            </button>
-          </div>
+              <div className="flex flex-col gap-1">
+                <span className="font-mono text-xs uppercase tracking-widest text-neutral-400 dark:text-neutral-500">
+                  Direct Email
+                </span>
+                <a
+                  href="mailto:abdullahbuilds786@gmail.com"
+                  className="font-mono text-sm text-neutral-800 dark:text-neutral-200 hover:text-[#80eb34] transition-colors truncate"
+                >
+                  abdullahbuilds786@gmail.com
+                </a>
+              </div>
 
-        </div>
-      </nav>
-    </header>
+              <div className="flex items-center justify-between text-xs font-mono text-neutral-400 dark:text-neutral-500 pt-2">
+                <span>© {new Date().getFullYear()} ABDULLAH.DEV</span>
+                <span className="text-[#80eb34] font-semibold">AVAILABLE FOR WORK</span>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 }
+

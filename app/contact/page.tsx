@@ -17,6 +17,15 @@ export default function Contact() {
   const [selectedService, setSelectedService] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
 
+  // Form states
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const [budget, setBudget] = useState("");
+  const [timeline, setTimeline] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [statusMessage, setStatusMessage] = useState<{ type: "success" | "error"; text: string } | null>(null);
+
   const services = [
     { id: "web", label: "WEB DEV" },
     { id: "automation", label: "AUTOMATION" },
@@ -28,6 +37,70 @@ export default function Contact() {
     navigator.clipboard.writeText("abdullahbuilds786@gmail.com");
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatusMessage(null);
+
+    if (!name.trim()) {
+      setStatusMessage({ type: "error", text: "Please enter your name." });
+      return;
+    }
+    if (!email.trim() || !email.includes("@")) {
+      setStatusMessage({ type: "error", text: "Please provide a valid email address." });
+      return;
+    }
+    if (!message.trim()) {
+      setStatusMessage({ type: "error", text: "Please include a short message describing your project." });
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: name.trim(),
+          email: email.trim(),
+          service: selectedService,
+          message: message.trim(),
+          budget,
+          timeline,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || "Failed to send message. Please try again.");
+      }
+
+      setStatusMessage({
+        type: "success",
+        text: data.message || "Thank you! Your message has been sent successfully. I'll get back to you shortly.",
+      });
+
+      // Clear form inputs
+      setName("");
+      setEmail("");
+      setMessage("");
+      setSelectedService(null);
+      setBudget("");
+      setTimeline("");
+    } catch (err: unknown) {
+      const errorMessage = err instanceof Error ? err.message : "Something went wrong. Please try again or email directly.";
+      setStatusMessage({
+        type: "error",
+        text: errorMessage,
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -144,14 +217,30 @@ export default function Contact() {
               </span>
             </div>
 
-            <form className="flex flex-col gap-10" onSubmit={(e) => e.preventDefault()}>
+            <form className="flex flex-col gap-10" onSubmit={handleSubmit}>
+              {/* Status feedback message */}
+              {statusMessage && (
+                <div
+                  className={`p-4 rounded-xl font-mono text-sm border transition-all ${
+                    statusMessage.type === "success"
+                      ? "bg-[#80eb34]/15 border-[#80eb34] text-[#4ea816] dark:text-[#80eb34]"
+                      : "bg-red-500/10 border-red-500/30 text-red-600 dark:text-red-400"
+                  }`}
+                >
+                  {statusMessage.text}
+                </div>
+              )}
+
               {/* Your Name */}
               <div className="flex flex-col gap-2 group">
                 <label className="font-norwester text-xs sm:text-sm tracking-widest uppercase text-neutral-500 dark:text-neutral-400 group-focus-within:text-black dark:group-focus-within:text-white transition-colors">
-                  Your Name
+                  Your Name *
                 </label>
                 <input
                   type="text"
+                  required
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
                   placeholder="Jane Doe"
                   className="w-full pb-3 pt-1 bg-transparent border-b border-neutral-300 dark:border-neutral-800 text-black dark:text-white placeholder:text-neutral-400/50 font-mono text-base sm:text-lg focus:outline-none focus:border-[#80eb34] transition-colors rounded-none"
                 />
@@ -160,10 +249,13 @@ export default function Contact() {
               {/* Email Address */}
               <div className="flex flex-col gap-2 group">
                 <label className="font-norwester text-xs sm:text-sm tracking-widest uppercase text-neutral-500 dark:text-neutral-400 group-focus-within:text-black dark:group-focus-within:text-white transition-colors">
-                  Email Address
+                  Email Address *
                 </label>
                 <input
                   type="email"
+                  required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   placeholder="jane@company.com"
                   className="w-full pb-3 pt-1 bg-transparent border-b border-neutral-300 dark:border-neutral-800 text-black dark:text-white placeholder:text-neutral-400/50 font-mono text-base sm:text-lg focus:outline-none focus:border-[#80eb34] transition-colors rounded-none"
                 />
@@ -182,7 +274,7 @@ export default function Contact() {
                         key={s.id}
                         type="button"
                         onClick={() => setSelectedService(isSelected ? null : s.id)}
-                        className={`py-3 px-3 text-center border font-mono text-xs tracking-wider uppercase transition-all duration-200 rounded-lg ${
+                        className={`py-3 px-3 text-center border font-mono text-xs tracking-wider uppercase transition-all duration-200 rounded-lg cursor-pointer ${
                           isSelected
                             ? "border-[#80eb34] bg-[#80eb34] text-black font-bold shadow-md shadow-[#80eb34]/25"
                             : "border-neutral-300 dark:border-neutral-800 text-neutral-700 dark:text-neutral-300 hover:border-black dark:hover:border-white bg-transparent"
@@ -198,10 +290,13 @@ export default function Contact() {
               {/* Message */}
               <div className="flex flex-col gap-2 group">
                 <label className="font-norwester text-xs sm:text-sm tracking-widest uppercase text-neutral-500 dark:text-neutral-400 group-focus-within:text-black dark:group-focus-within:text-white transition-colors">
-                  Tell Me About Your Project
+                  Tell Me About Your Project *
                 </label>
                 <textarea
                   rows={3}
+                  required
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
                   placeholder="Overview, scope, goals, or problems you're looking to solve..."
                   className="w-full pb-3 pt-1 bg-transparent border-b border-neutral-300 dark:border-neutral-800 text-black dark:text-white placeholder:text-neutral-400/50 font-mono text-base sm:text-lg focus:outline-none focus:border-[#80eb34] transition-colors resize-none rounded-none"
                 />
@@ -215,10 +310,11 @@ export default function Contact() {
                   </label>
                   <div className="relative">
                     <select
-                      defaultValue=""
+                      value={budget}
+                      onChange={(e) => setBudget(e.target.value)}
                       className="w-full pb-3 pt-1 bg-transparent border-b border-neutral-300 dark:border-neutral-800 text-black dark:text-white font-mono text-sm sm:text-base focus:outline-none focus:border-[#80eb34] transition-colors appearance-none cursor-pointer rounded-none"
                     >
-                      <option value="" disabled className="dark:bg-[#151515]">Select budget</option>
+                      <option value="" className="dark:bg-[#151515]">Select budget (Optional)</option>
                       <option value="under-10k" className="dark:bg-[#151515]">Under ₹10k</option>
                       <option value="10k-25k" className="dark:bg-[#151515]">₹10k – ₹25k</option>
                       <option value="25k-50k" className="dark:bg-[#151515]">₹25k – ₹50k</option>
@@ -238,10 +334,11 @@ export default function Contact() {
                   </label>
                   <div className="relative">
                     <select
-                      defaultValue=""
+                      value={timeline}
+                      onChange={(e) => setTimeline(e.target.value)}
                       className="w-full pb-3 pt-1 bg-transparent border-b border-neutral-300 dark:border-neutral-800 text-black dark:text-white font-mono text-sm sm:text-base focus:outline-none focus:border-[#80eb34] transition-colors appearance-none cursor-pointer rounded-none"
                     >
-                      <option value="" disabled className="dark:bg-[#151515]">Select timeline</option>
+                      <option value="" className="dark:bg-[#151515]">Select timeline (Optional)</option>
                       <option value="asap" className="dark:bg-[#151515]">ASAP</option>
                       <option value="1-2-months" className="dark:bg-[#151515]">1–2 months</option>
                       <option value="3-plus-months" className="dark:bg-[#151515]">3+ months</option>
@@ -258,9 +355,17 @@ export default function Contact() {
               <div className="flex justify-start sm:justify-end pt-4">
                 <button
                   type="submit"
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-[#80eb34] text-black font-norwester text-lg uppercase tracking-widest px-10 py-4 rounded-2xl hover:-translate-y-1 hover:shadow-lg hover:shadow-[#80eb34]/30 active:translate-y-0 transition-all duration-300 cursor-pointer"
+                  disabled={isSubmitting}
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-[#80eb34] disabled:opacity-60 text-black font-norwester text-lg uppercase tracking-widest px-10 py-4 rounded-2xl hover:-translate-y-1 hover:shadow-lg hover:shadow-[#80eb34]/30 active:translate-y-0 disabled:hover:translate-y-0 disabled:cursor-not-allowed transition-all duration-300 cursor-pointer"
                 >
-                  Send Inquiry →
+                  {isSubmitting ? (
+                    <>
+                      <span className="inline-block w-4 h-4 border-2 border-black border-t-transparent rounded-full animate-spin" />
+                      Sending...
+                    </>
+                  ) : (
+                    "Send Inquiry →"
+                  )}
                 </button>
               </div>
             </form>
