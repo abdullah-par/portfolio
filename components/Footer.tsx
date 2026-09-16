@@ -27,7 +27,7 @@ const footerLinks = [
   },
 ];
 
-const socialLinks = [
+export const socialLinks = [
   {
     label: "GitHub",
     href: "https://github.com/abdullah-par",
@@ -94,14 +94,6 @@ export function Footer() {
                 <p className="font-norwester text-xs tracking-widest uppercase text-[#9a9a90] dark:text-[#6a6a60] mb-1">
                   Contact Info
                 </p>
-                {/* Freelance status */}
-                <div className="flex items-center gap-2.5 text-xs font-mono tracking-wider text-[#3a3a36] dark:text-[#c8c8be]">
-                  <span className="relative flex h-2 w-2 shrink-0">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#80eb34] opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-[#80eb34]"></span>
-                  </span>
-                  AVAILABLE FOR FREELANCE PROJECTS
-                </div>
                 {/* Email — mail icon, mid-tone text */}
                 <a
                   href="mailto:abdullahbuilds786@gmail.com"
@@ -113,6 +105,27 @@ export function Footer() {
                   </svg>
                   abdullahbuilds786@gmail.com
                 </a>
+              </div>
+
+              {/* Socials */}
+              <div className="flex flex-col gap-3 mt-2">
+                <p className="font-norwester text-xs tracking-widest uppercase text-[#9a9a90] dark:text-[#6a6a60] mb-1">
+                  Socials
+                </p>
+                <div className="flex items-center gap-3">
+                  {socialLinks.map((s) => (
+                    <a
+                      key={s.label}
+                      href={s.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={s.label}
+                      className="w-9 h-9 flex items-center justify-center rounded-lg border border-[#ccccc4] dark:border-[#2e2e2c] text-[#6b6b62] dark:text-[#6a6a60] hover:border-[#80eb34] hover:text-[#5cba1d] dark:hover:text-[#80eb34] hover:bg-[#d4f9b8]/40 dark:hover:bg-[#3d8a10]/20 hover:-translate-y-0.5 transition-all duration-200"
+                    >
+                      {s.icon}
+                    </a>
+                  ))}
+                </div>
               </div>
             </div>
 
@@ -143,24 +156,7 @@ export function Footer() {
 
       {/* Lower band — even darker/lighter to create a second tonal layer */}
       <div className="bg-[#e8e7e0] dark:bg-[#0e0e0d] border-t border-[#d8d7cf] dark:border-[#222220]">
-        <div className="max-w-7xl mx-auto px-6 md:px-12 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-
-          {/* Social icons */}
-          <div className="flex items-center gap-3">
-            {socialLinks.map((s) => (
-              <a
-                key={s.label}
-                href={s.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={s.label}
-                className="w-9 h-9 flex items-center justify-center rounded-lg border border-[#ccccc4] dark:border-[#2e2e2c] text-[#6b6b62] dark:text-[#6a6a60] hover:border-[#80eb34] hover:text-[#5cba1d] dark:hover:text-[#80eb34] hover:bg-[#d4f9b8]/40 dark:hover:bg-[#3d8a10]/20 hover:-translate-y-0.5 transition-all duration-200"
-              >
-                {s.icon}
-              </a>
-            ))}
-          </div>
-
+        <div className="max-w-7xl mx-auto px-6 md:px-12 py-6 flex items-center justify-center text-center">
           {/* Copyright — softest text tier */}
           <p className="text-xs font-mono text-[#9a9a90] dark:text-[#4a4a46] tracking-widest uppercase">
             © {new Date().getFullYear()} Abdullah.dev — All rights reserved

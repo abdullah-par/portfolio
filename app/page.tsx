@@ -1,35 +1,26 @@
 "use client";
 
-import { motion } from "framer-motion";
-
-const fadeUp = {
+import { motion, type Variants } from "framer-motion";
+const fadeUp: Variants = {
   hidden: { opacity: 0, y: 32 },
   show: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: i * 0.1 },
-  }),
-};
-
-const fadeIn = {
-  hidden: { opacity: 0 },
-  show: (i: number) => ({
-    opacity: 1,
-    transition: { duration: 0.7, ease: "easeOut", delay: i * 0.1 },
+    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as const, delay: i * 0.1 },
   }),
 };
 
 export default function Home() {
   return (
     <div className="flex flex-col flex-1 items-center bg-background font-sans transition-colors duration-500 overflow-hidden">
-      <main className="flex flex-1 w-full max-w-7xl flex-col lg:flex-row items-center justify-between py-32 px-6 md:px-12 bg-background pt-40 gap-12 lg:gap-8 transition-colors duration-500">
+      <main className="flex flex-1 w-full max-w-7xl flex-col lg:flex-row items-center justify-between py-32 px-6 md:px-12 bg-background pt-40 gap-12 lg:gap-20 transition-colors duration-500">
 
         {/* Left side text content */}
-        <div className="flex flex-col items-start gap-6 max-w-xl lg:max-w-2xl mt-8 md:mt-16 w-full shrink-0">
+        <div className="flex flex-col items-start gap-6 max-w-xl lg:max-w-2xl mt-8 md:mt-16 w-full">
 
           {/* Headline */}
           <motion.h1
-            className="font-norwester text-[3rem] sm:text-[4rem] md:text-[5.5rem] leading-[1.05] tracking-tighter text-black dark:text-white"
+            className="font-norwester text-[3rem] sm:text-[4rem] md:text-[4.5rem] lg:text-[5rem] leading-[1.05] tracking-tighter text-black dark:text-white"
             variants={fadeUp}
             custom={0}
             initial="hidden"
@@ -40,16 +31,18 @@ export default function Home() {
               BETTER,
             </span>
             <br />
-            Automate{" "}
-            <span className="relative inline-block z-10">
-              SMARTER.
-              {/* Marker swipe highlight — animates in after headline */}
-              <motion.span
-                className="absolute bottom-2 md:bottom-3 -left-2 -right-3 md:-left-4 md:-right-5 h-[16px] md:h-[24px] bg-[#b1f08a] dark:bg-[#5cba1d] -z-10 rounded-[20px] -rotate-1"
-                initial={{ scaleX: 0, originX: 0 }}
-                animate={{ scaleX: 1 }}
-                transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1], delay: 0.55 }}
-              />
+            <span className="whitespace-nowrap">
+              Automate{" "}
+              <span className="relative inline-block z-10">
+                SMARTER.
+                {/* Marker swipe highlight — animates in after headline */}
+                <motion.span
+                  className="absolute bottom-2 md:bottom-3 -left-2 -right-3 md:-left-4 md:-right-5 h-[16px] md:h-[24px] bg-[#b1f08a] dark:bg-[#5cba1d] -z-10 rounded-[20px] -rotate-1"
+                  initial={{ scaleX: 0, originX: 0 }}
+                  animate={{ scaleX: 1 }}
+                  transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1], delay: 0.55 }}
+                />
+              </span>
             </span>
           </motion.h1>
 
@@ -61,8 +54,7 @@ export default function Home() {
             initial="hidden"
             animate="show"
           >
-            I help businesses turn ideas and repetitive workflows into modern web
-            experiences and AI Powered systems.
+            I build modern websites, automate repetitive workflows, and integrate AI where it actually makes a difference.
           </motion.p>
 
           {/* Buttons */}
@@ -86,63 +78,101 @@ export default function Home() {
               Let's work together
             </a>
           </motion.div>
-
-          {/* Credibility line */}
-          <motion.div
-            className="mt-8 py-3 px-5 border border-neutral-200 dark:border-neutral-800 rounded-lg flex items-center flex-wrap gap-x-4 gap-y-2 text-xs font-mono text-neutral-500 dark:text-neutral-400 uppercase tracking-widest"
-            variants={fadeIn}
-            custom={5}
-            initial="hidden"
-            animate="show"
-          >
-            <span>Software Engineer</span>
-            <span className="w-1.5 h-1.5 rounded-sm bg-[#80eb34]" />
-            <span>Web Development</span>
-            <span className="w-1.5 h-1.5 rounded-sm bg-[#80eb34]" />
-            <span>Automation</span>
-            <span className="w-1.5 h-1.5 rounded-sm bg-[#80eb34]" />
-            <span>AI</span>
-          </motion.div>
         </div>
 
-        {/* Right side graphic — floats perpetually */}
-        <motion.div
-          className="relative w-full max-w-[280px] sm:max-w-[320px] md:max-w-[400px] aspect-square flex items-center justify-center mt-12 lg:mt-0"
-          initial={{ opacity: 0, scale: 0.85 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
-        >
-          {/* Green square — slow counter-rotate float */}
+        {/* Right Side Area */}
+        <div className="flex flex-col items-center mt-12 lg:mt-0 w-full max-w-[320px] sm:max-w-[380px] md:max-w-[460px]">
+          {/* Right side graphic — floats perpetually */}
+          <div className="relative w-full aspect-square flex items-center justify-center">
+            
+            {/* Decorative Elements (Orbit, Slashes, Star) */}
+            <motion.div 
+              className="absolute inset-0 w-full h-full pointer-events-none z-0"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1, ease: "easeOut", delay: 0.3 }}
+            >
+              {/* Orbital Ring Background */}
+              <svg className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140%] h-[140%] text-[#80eb34]" viewBox="0 0 200 200" fill="none" stroke="currentColor" strokeWidth="0.75">
+                <ellipse cx="100" cy="100" rx="95" ry="70" transform="rotate(-20 100 100)" />
+              </svg>
+              
+              {/* Top Left Slashes */}
+              <svg className="absolute -top-4 -left-4 w-12 h-12 text-[#80eb34]" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+                <path d="M14 32 L4 18 M24 28 L20 8 M34 32 L44 18" />
+              </svg>
+
+              {/* Right Sparkle */}
+              <svg className="absolute top-[60%] -right-4 w-10 h-10 text-[#80eb34]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round">
+                <path d="M12 2 Q12 12 2 12 Q12 12 12 22 Q12 12 22 12 Q12 12 12 2 Z" />
+              </svg>
+            </motion.div>
+
+            <motion.div
+              className="relative w-full h-full flex items-center justify-center z-10"
+              initial={{ opacity: 0, scale: 0.85 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
+            >
+              {/* Green square — slow counter-rotate float */}
+              <motion.div
+                className="absolute w-[75%] h-[75%] bg-[#80eb34] rounded-[2rem] sm:rounded-[3rem]"
+                animate={{
+                  rotate: [-15, -11, -15],
+                  y: [0, -12, 0],
+                }}
+                transition={{
+                  duration: 5,
+                  ease: "easeInOut",
+                  repeat: Infinity,
+                  repeatType: "loop",
+                }}
+                style={{ translateX: "-15%" }}
+              />
+              {/* Black square — float in opposite phase */}
+              <motion.div
+                className="absolute w-[75%] h-[75%] bg-black dark:bg-white rounded-[2rem] sm:rounded-[3rem] shadow-2xl overflow-hidden relative"
+                animate={{
+                  rotate: [15, 11, 15],
+                  y: [0, 12, 0],
+                }}
+                transition={{
+                  duration: 5,
+                  ease: "easeInOut",
+                  repeat: Infinity,
+                  repeatType: "loop",
+                }}
+                style={{ translateX: "15%" }}
+              >
+                <motion.img
+                  src="/logo/profile.jpg"
+                  alt="Profile"
+                  className="absolute inset-0 w-full h-full object-cover scale-[1.35]"
+                  animate={{ 
+                    rotate: [-15, -11, -15]
+                  }}
+                  transition={{ 
+                    rotate: { duration: 5, ease: "easeInOut", repeat: Infinity, repeatType: "loop" }
+                  }}
+                />
+              </motion.div>
+            </motion.div>
+          </div>
+
+          {/* Availability line */}
           <motion.div
-            className="absolute w-[75%] h-[75%] bg-[#80eb34] rounded-[2rem] sm:rounded-[3rem]"
-            animate={{
-              rotate: [-15, -11, -15],
-              y: [0, -12, 0],
-            }}
-            transition={{
-              duration: 5,
-              ease: "easeInOut",
-              repeat: Infinity,
-              repeatType: "loop",
-            }}
-            style={{ translateX: "-15%" }}
-          />
-          {/* Black square — float in opposite phase */}
-          <motion.div
-            className="absolute w-[75%] h-[75%] bg-black dark:bg-white rounded-[2rem] sm:rounded-[3rem] shadow-2xl"
-            animate={{
-              rotate: [15, 11, 15],
-              y: [0, 12, 0],
-            }}
-            transition={{
-              duration: 5,
-              ease: "easeInOut",
-              repeat: Infinity,
-              repeatType: "loop",
-            }}
-            style={{ translateX: "15%" }}
-          />
-        </motion.div>
+            className="mt-12 flex items-center justify-center gap-x-3 text-xs sm:text-sm font-bold text-neutral-900 dark:text-neutral-100 uppercase tracking-widest"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+          >
+            <span className="relative flex h-2.5 w-2.5 sm:h-3 sm:w-3 shrink-0">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#80eb34] opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2.5 w-2.5 sm:h-3 sm:w-3 bg-[#80eb34]"></span>
+            </span>
+            <span>Available for freelance projects</span>
+          </motion.div>
+        </div>
 
       </main>
     </div>
