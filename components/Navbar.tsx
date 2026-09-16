@@ -104,7 +104,147 @@ export function Navbar() {
             {/* Desktop Links */}
             <div className="hidden md:flex items-center gap-6 lg:gap-8 mr-4">
               {navLinks.map((link) => {
-                const isActive = pathname === link.href;
+                const isServices = link.name === "SERVICES";
+                const isActive = pathname === link.href || (isServices && pathname.startsWith("/services"));
+
+                if (isServices) {
+                  return (
+                    <div
+                      key={link.name}
+                      className="relative group py-2"
+                    >
+                      <Link
+                        href={link.href}
+                        className={`relative flex items-center gap-1.5 font-norwester text-base lg:text-lg uppercase tracking-wide transition-colors ${
+                          isActive
+                            ? "text-[#5cba1d] dark:text-[#80eb34]"
+                            : "text-black hover:text-[#80eb34] dark:text-white dark:hover:text-[#80eb34]"
+                        }`}
+                      >
+                        {link.name}
+                        <svg
+                          className="w-3.5 h-3.5 transition-transform duration-200 group-hover:rotate-180 text-neutral-500 group-hover:text-[#80eb34]"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                          strokeWidth={2.5}
+                        >
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                        </svg>
+                        <span
+                          className={`absolute -bottom-1 left-0 w-full h-[3px] bg-[#80eb34] transition-transform origin-left duration-300 ease-out ${
+                            isActive ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
+                          }`}
+                        />
+                      </Link>
+
+                      {/* Minimal Stripe-style Dropdown Menu */}
+                      <div className="absolute top-full -left-28 lg:-left-36 pt-4 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-200 ease-out z-50">
+                        <div className="w-[660px] lg:w-[720px] p-8 bg-white dark:bg-[#0d0d0d] border border-neutral-200 dark:border-neutral-800 rounded-2xl shadow-2xl backdrop-blur-xl">
+                          <div className="grid grid-cols-12 gap-10">
+                            
+                            {/* Column 1: Web Development (6 cols) */}
+                            <div className="col-span-6 flex flex-col gap-4">
+                              <span className="font-norwester text-xs uppercase tracking-widest text-neutral-400 dark:text-neutral-500 font-semibold">
+                                Web Development
+                              </span>
+                              <div className="flex flex-col gap-3.5">
+                                <Link
+                                  href="/services#fullstack"
+                                  className="group/link flex flex-col"
+                                >
+                                  <span className="font-norwester text-base tracking-wide text-neutral-900 dark:text-neutral-100 group-hover/link:text-[#5cba1d] dark:group-hover/link:text-[#80eb34] transition-colors">
+                                    Full Stack Development
+                                  </span>
+                                  <span className="font-balgin text-xs text-neutral-500 dark:text-neutral-400">
+                                    End-to-end web apps, custom platforms & APIs
+                                  </span>
+                                </Link>
+
+                                <Link
+                                  href="/services#ui-enhancement"
+                                  className="group/link flex flex-col"
+                                >
+                                  <span className="font-norwester text-base tracking-wide text-neutral-900 dark:text-neutral-100 group-hover/link:text-[#5cba1d] dark:group-hover/link:text-[#80eb34] transition-colors">
+                                    UI Enhancement
+                                  </span>
+                                  <span className="font-balgin text-xs text-neutral-500 dark:text-neutral-400">
+                                    Refining interactions, responsiveness & visual polish
+                                  </span>
+                                </Link>
+
+                                <Link
+                                  href="/services#migration"
+                                  className="group/link flex flex-col"
+                                >
+                                  <span className="font-norwester text-base tracking-wide text-neutral-900 dark:text-neutral-100 group-hover/link:text-[#5cba1d] dark:group-hover/link:text-[#80eb34] transition-colors">
+                                    Migration & Modernization
+                                  </span>
+                                  <span className="font-balgin text-xs text-neutral-500 dark:text-neutral-400">
+                                    Upgrading legacy codebases to modern Next.js stacks
+                                  </span>
+                                </Link>
+                              </div>
+                            </div>
+
+                            {/* Column 2: AI & Automation (6 cols) */}
+                            <div className="col-span-6 flex flex-col gap-4 border-l border-neutral-100 dark:border-neutral-800/80 pl-8">
+                              <span className="font-norwester text-xs uppercase tracking-widest text-neutral-400 dark:text-neutral-500 font-semibold">
+                                AI & Automation
+                              </span>
+                              <div className="flex flex-col gap-3">
+                                <Link
+                                  href="/services#marketing-automation"
+                                  className="group/link flex flex-col"
+                                >
+                                  <span className="font-norwester text-base tracking-wide text-neutral-900 dark:text-neutral-100 group-hover/link:text-[#5cba1d] dark:group-hover/link:text-[#80eb34] transition-colors">
+                                    Marketing Automation
+                                  </span>
+                                  <span className="font-balgin text-xs text-neutral-500 dark:text-neutral-400">
+                                    Automated email funnels, lead scoring & campaign workflows
+                                  </span>
+                                </Link>
+
+                                <Link
+                                  href="/services#crm-integration"
+                                  className="group/link flex flex-col"
+                                >
+                                  <span className="font-norwester text-base tracking-wide text-neutral-900 dark:text-neutral-100 group-hover/link:text-[#5cba1d] dark:group-hover/link:text-[#80eb34] transition-colors">
+                                    CRM Integration
+                                  </span>
+                                  <span className="font-balgin text-xs text-neutral-500 dark:text-neutral-400">
+                                    Seamless sync with HubSpot, Salesforce, Airtable & Notion
+                                  </span>
+                                </Link>
+
+                                <Link
+                                  href="/services#sales-automation"
+                                  className="group/link flex flex-col"
+                                >
+                                  <span className="font-norwester text-base tracking-wide text-neutral-900 dark:text-neutral-100 group-hover/link:text-[#5cba1d] dark:group-hover/link:text-[#80eb34] transition-colors">
+                                    Sales Automation
+                                  </span>
+                                  <span className="font-balgin text-xs text-neutral-500 dark:text-neutral-400">
+                                    Outreach pipelines, automatic follow-ups & meeting sync
+                                  </span>
+                                </Link>
+
+                                <Link
+                                  href="/contact"
+                                  className="mt-1 font-norwester text-xs uppercase tracking-widest text-[#5cba1d] dark:text-[#80eb34] hover:underline flex items-center gap-1"
+                                >
+                                  Discuss a Project →
+                                </Link>
+                              </div>
+                            </div>
+
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                }
+
                 return (
                   <Link 
                     key={link.name} 
@@ -192,13 +332,15 @@ export function Navbar() {
               </span>
 
               {navLinks.map((link, idx) => {
-                const isActive = pathname === link.href;
+                const isServices = link.name === "SERVICES";
+                const isActive = pathname === link.href || (isServices && pathname.startsWith("/services"));
                 return (
                   <motion.div
                     key={link.name}
                     initial={{ opacity: 0, x: -25 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: idx * 0.06 + 0.1, duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                    className="flex flex-col"
                   >
                     <Link
                       href={link.href}
@@ -217,6 +359,70 @@ export function Navbar() {
                         }`} 
                       />
                     </Link>
+
+                    {isServices && (
+                      <div className="flex flex-col pl-4 pt-2 pb-1 gap-2.5 border-l-2 border-[#80eb34]/40 mt-2 ml-1">
+                        <div className="flex flex-col gap-1.5">
+                          <span className="font-mono text-[10px] uppercase tracking-wider text-[#5cba1d] dark:text-[#80eb34] font-bold">
+                            Web Development
+                          </span>
+                          <Link
+                            href="/services#fullstack"
+                            onClick={() => setMobileMenuOpen(false)}
+                            className="font-norwester text-base tracking-wide text-neutral-700 dark:text-neutral-300 hover:text-[#5cba1d] dark:hover:text-[#80eb34] transition-colors flex items-center gap-2 pl-2"
+                          >
+                            <span className="w-1.5 h-1.5 rounded-full bg-[#80eb34]" />
+                            Full Stack Development
+                          </Link>
+                          <Link
+                            href="/services#ui-enhancement"
+                            onClick={() => setMobileMenuOpen(false)}
+                            className="font-norwester text-base tracking-wide text-neutral-700 dark:text-neutral-300 hover:text-[#5cba1d] dark:hover:text-[#80eb34] transition-colors flex items-center gap-2 pl-2"
+                          >
+                            <span className="w-1.5 h-1.5 rounded-full bg-[#80eb34]" />
+                            UI Enhancement & Redesign
+                          </Link>
+                          <Link
+                            href="/services#migration"
+                            onClick={() => setMobileMenuOpen(false)}
+                            className="font-norwester text-base tracking-wide text-neutral-700 dark:text-neutral-300 hover:text-[#5cba1d] dark:hover:text-[#80eb34] transition-colors flex items-center gap-2 pl-2"
+                          >
+                            <span className="w-1.5 h-1.5 rounded-full bg-[#80eb34]" />
+                            Migration & Modernization
+                          </Link>
+                        </div>
+
+                        <div className="flex flex-col gap-1.5 pt-2 border-t border-neutral-200 dark:border-neutral-800">
+                          <span className="font-mono text-[10px] uppercase tracking-wider text-[#5cba1d] dark:text-[#80eb34] font-bold">
+                            AI & Automation
+                          </span>
+                          <Link
+                            href="/services#marketing-automation"
+                            onClick={() => setMobileMenuOpen(false)}
+                            className="font-norwester text-base tracking-wide text-neutral-700 dark:text-neutral-300 hover:text-[#5cba1d] dark:hover:text-[#80eb34] transition-colors flex items-center gap-2 pl-2"
+                          >
+                            <span className="w-1.5 h-1.5 rounded-full bg-[#80eb34]" />
+                            Marketing Automation
+                          </Link>
+                          <Link
+                            href="/services#crm-integration"
+                            onClick={() => setMobileMenuOpen(false)}
+                            className="font-norwester text-base tracking-wide text-neutral-700 dark:text-neutral-300 hover:text-[#5cba1d] dark:hover:text-[#80eb34] transition-colors flex items-center gap-2 pl-2"
+                          >
+                            <span className="w-1.5 h-1.5 rounded-full bg-[#80eb34]" />
+                            CRM Integration
+                          </Link>
+                          <Link
+                            href="/services#sales-automation"
+                            onClick={() => setMobileMenuOpen(false)}
+                            className="font-norwester text-base tracking-wide text-neutral-700 dark:text-neutral-300 hover:text-[#5cba1d] dark:hover:text-[#80eb34] transition-colors flex items-center gap-2 pl-2"
+                          >
+                            <span className="w-1.5 h-1.5 rounded-full bg-[#80eb34]" />
+                            Sales Automation
+                          </Link>
+                        </div>
+                      </div>
+                    )}
                   </motion.div>
                 );
               })}

@@ -22,7 +22,7 @@ const norwester = localFont({
 });
 
 const balgin = localFont({
-  src: "./font/Fontspring-DEMO-balgin-extralight.otf",
+  src: "./font/balgin-clean.otf",
   variable: "--font-balgin",
 });
 
