@@ -23,6 +23,7 @@ export default function Contact() {
   const [message, setMessage] = useState("");
   const [budget, setBudget] = useState("");
   const [timeline, setTimeline] = useState("");
+  const [honeypot, setHoneypot] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [statusMessage, setStatusMessage] = useState<{ type: "success" | "error"; text: string } | null>(null);
 
@@ -71,6 +72,7 @@ export default function Contact() {
           message: message.trim(),
           budget,
           timeline,
+          honeypot,
         }),
       });
 
@@ -230,6 +232,20 @@ export default function Contact() {
                   {statusMessage.text}
                 </div>
               )}
+
+              {/* Honeypot field (hidden from real users) */}
+              <div className="hidden" aria-hidden="true">
+                <label>
+                  Don&apos;t fill this out if you&apos;re human:
+                  <input
+                    type="text"
+                    name="address"
+                    tabIndex={-1}
+                    value={honeypot}
+                    onChange={(e) => setHoneypot(e.target.value)}
+                  />
+                </label>
+              </div>
 
               {/* Your Name */}
               <div className="flex flex-col gap-2 group">

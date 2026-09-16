@@ -64,13 +64,13 @@ export default function About() {
 
               <div className="flex flex-col gap-4 font-balgin text-lg md:text-xl leading-relaxed text-neutral-700 dark:text-neutral-300">
                 <p>
-                  I'm Abdullah a software engineer interested in the space where web development, automation and AI meet.
+                  I&apos;m Abdullah a software engineer interested in the space where web development, automation and AI meet.
                 </p>
                 <p>
                   I like taking messy ideas, repetitive processes and manual workflows and turning them into simple systems that actually work.
                 </p>
                 <p>
-                  Whether it's a web application, an internal tool or an automated workflow, I care about the same thing: <span className="text-black dark:text-white font-semibold">make the work simpler.</span>
+                  Whether it&apos;s a web application, an internal tool or an automated workflow, I care about the same thing: <span className="text-black dark:text-white font-semibold">make the work simpler.</span>
                 </p>
               </div>
             </motion.div>
@@ -93,7 +93,7 @@ export default function About() {
                 <span>↓</span>
               </div>
               <p className="font-norwester text-xl sm:text-2xl uppercase tracking-wide text-[#5cba1d] dark:text-[#80eb34]">
-                THAT'S WHERE I START BUILDING.
+                THAT&apos;S WHERE I START BUILDING.
               </p>
             </motion.div>
 
@@ -187,7 +187,7 @@ export default function About() {
               href="/contact"
               className="flex items-center justify-center bg-black dark:bg-white text-white dark:text-black font-norwester text-base uppercase tracking-widest py-3.5 px-6 rounded-2xl hover:-translate-y-0.5 hover:shadow-lg active:translate-y-0 transition-all duration-300"
             >
-              Let's Talk
+              Let&apos;s Talk
             </Link>
 
           </motion.div>

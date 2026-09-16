@@ -4,7 +4,12 @@ import { Resend } from "resend";
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-    const { name, email, service, message, budget, timeline } = body;
+    const { name, email, service, message, budget, timeline, honeypot } = body;
+
+    // Spam protection: If honeypot field is filled, return success silently without sending
+    if (honeypot) {
+      return NextResponse.json({ success: true, message: "Your message was sent successfully!" });
+    }
 
     // Basic server-side validation
     if (!name || !name.trim()) {
