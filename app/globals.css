@@ -3,7 +3,7 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  --background: #f5f3ee;
+  --background: #eeeeeb;
   --foreground: #121212;
 }
 
@@ -32,11 +32,42 @@ html {
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
+  background-image:
+    radial-gradient(ellipse at 12% 10%, rgba(255, 255, 255, 0.9), transparent 30%),
+    radial-gradient(ellipse at 92% 34%, rgba(174, 178, 177, 0.16), transparent 32%),
+    radial-gradient(ellipse at 40% 94%, rgba(197, 199, 197, 0.14), transparent 38%),
+    radial-gradient(circle at 58% 45%, rgba(255, 255, 255, 0.2), transparent 46%),
+    repeating-linear-gradient(5deg, rgba(74, 78, 78, 0.035) 0, rgba(74, 78, 78, 0.035) 1px, transparent 1px, transparent 5px),
+    repeating-linear-gradient(96deg, rgba(255, 255, 255, 0.3) 0, rgba(255, 255, 255, 0.3) 1px, transparent 1px, transparent 8px),
+    repeating-linear-gradient(178deg, rgba(92, 96, 96, 0.014) 0, rgba(92, 96, 96, 0.014) 1px, transparent 1px, transparent 4px);
+  background-attachment: fixed;
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
   text-rendering: optimizeLegibility;
   overflow-x: hidden;
+}
+
+.dark body {
+  background-color: var(--background);
+  background-image: none;
+}
+
+.bg-background {
+  background-color: transparent;
+  background-image: inherit;
+}
+
+.home-grid {
+  background-image: linear-gradient(rgba(18, 18, 18, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(18, 18, 18, 0.045) 1px, transparent 1px);
+  background-size: 42px 42px;
+  background-position: center top;
+}
+
+.dark .home-grid {
+  background-image: linear-gradient(rgba(245, 245, 245, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(245, 245, 245, 0.06) 1px, transparent 1px);
 }
 
 ::selection {

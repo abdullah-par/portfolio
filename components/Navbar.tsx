@@ -150,7 +150,7 @@ export function Navbar() {
                               </span>
                               <div className="flex flex-col gap-3.5">
                                 <Link
-                                  href="/services#fullstack"
+                                  href="/services#web-development"
                                   className="group/link flex flex-col"
                                 >
                                   <span className="font-norwester text-base tracking-wide text-neutral-900 dark:text-neutral-100 group-hover/link:text-[#5cba1d] dark:group-hover/link:text-[#80eb34] transition-colors">
@@ -194,7 +194,7 @@ export function Navbar() {
                               </span>
                               <div className="flex flex-col gap-3">
                                 <Link
-                                  href="/services#marketing-automation"
+                                  href="/services#automation"
                                   className="group/link flex flex-col"
                                 >
                                   <span className="font-norwester text-base tracking-wide text-neutral-900 dark:text-neutral-100 group-hover/link:text-[#5cba1d] dark:group-hover/link:text-[#80eb34] transition-colors">
@@ -206,7 +206,7 @@ export function Navbar() {
                                 </Link>
 
                                 <Link
-                                  href="/services#crm-integration"
+                                  href="/services#ai-integration"
                                   className="group/link flex flex-col"
                                 >
                                   <span className="font-norwester text-base tracking-wide text-neutral-900 dark:text-neutral-100 group-hover/link:text-[#5cba1d] dark:group-hover/link:text-[#80eb34] transition-colors">
@@ -218,7 +218,7 @@ export function Navbar() {
                                 </Link>
 
                                 <Link
-                                  href="/services#sales-automation"
+                                  href="/services#ai-chatbots"
                                   className="group/link flex flex-col"
                                 >
                                   <span className="font-norwester text-base tracking-wide text-neutral-900 dark:text-neutral-100 group-hover/link:text-[#5cba1d] dark:group-hover/link:text-[#80eb34] transition-colors">
@@ -366,7 +366,7 @@ export function Navbar() {
                             Web Development
                           </span>
                           <Link
-                            href="/services#fullstack"
+                            href="/services#web-development"
                             onClick={() => setMobileMenuOpen(false)}
                             className="font-norwester text-base tracking-wide text-neutral-700 dark:text-neutral-300 hover:text-[#5cba1d] dark:hover:text-[#80eb34] transition-colors flex items-center gap-2 pl-2"
                           >
@@ -396,7 +396,7 @@ export function Navbar() {
                             AI & Automation
                           </span>
                           <Link
-                            href="/services#marketing-automation"
+                            href="/services#automation"
                             onClick={() => setMobileMenuOpen(false)}
                             className="font-norwester text-base tracking-wide text-neutral-700 dark:text-neutral-300 hover:text-[#5cba1d] dark:hover:text-[#80eb34] transition-colors flex items-center gap-2 pl-2"
                           >
@@ -404,7 +404,7 @@ export function Navbar() {
                             Marketing Automation
                           </Link>
                           <Link
-                            href="/services#crm-integration"
+                            href="/services#ai-integration"
                             onClick={() => setMobileMenuOpen(false)}
                             className="font-norwester text-base tracking-wide text-neutral-700 dark:text-neutral-300 hover:text-[#5cba1d] dark:hover:text-[#80eb34] transition-colors flex items-center gap-2 pl-2"
                           >
@@ -412,7 +412,7 @@ export function Navbar() {
                             CRM Integration
                           </Link>
                           <Link
-                            href="/services#sales-automation"
+                            href="/services#ai-chatbots"
                             onClick={() => setMobileMenuOpen(false)}
                             className="font-norwester text-base tracking-wide text-neutral-700 dark:text-neutral-300 hover:text-[#5cba1d] dark:hover:text-[#80eb34] transition-colors flex items-center gap-2 pl-2"
                           >

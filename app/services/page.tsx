@@ -12,6 +12,57 @@ const fadeUp: Variants = {
   }),
 };
 
+const services = [
+  {
+    id: "01",
+    anchor: "web-development",
+    title: "Web Development",
+    description:
+      "I build modern, performant websites and web applications using React and Next.js. Clean code, polished experiences, and production-ready delivery.",
+    detail: "Full stack websites, custom platforms, and robust APIs.",
+  },
+  {
+    id: "02",
+    anchor: "automation",
+    title: "Automation",
+    description:
+      "I identify repetitive manual work and replace it with reliable automation systems using tools like n8n, Make, Zapier, or custom scripts.",
+    detail: "Workflows that remove busywork and keep your team moving.",
+  },
+  {
+    id: "03",
+    anchor: "ai-integration",
+    title: "AI Integration",
+    description:
+      "I connect LLMs and AI workflows into real products, from smart document processing and chat experiences to retrieval systems and automation.",
+    detail: "Practical AI features built around real business needs.",
+  },
+  {
+    id: "04",
+    anchor: "ui-enhancement",
+    title: "UI Enhancement",
+    description:
+      "I refine existing interfaces with clearer layouts, smoother interactions, and responsive design that feels polished on every screen.",
+    detail: "A sharper, more considered experience for your existing product.",
+  },
+  {
+    id: "05",
+    anchor: "migration",
+    title: "Migration & Modernization",
+    description:
+      "I upgrade legacy applications and move them to modern, maintainable stacks with better performance, accessibility, and scalability.",
+    detail: "A cleaner foundation without losing what already works.",
+  },
+  {
+    id: "06",
+    anchor: "ai-chatbots",
+    title: "AI Chatbot Services",
+    description:
+      "I build practical AI chatbots for businesses that answer questions, support customers, qualify leads, and connect with your existing tools.",
+    detail: "Business chatbots that are useful, focused, and connected.",
+  },
+];
+
 export default function Services() {
   return (
     <div className="flex flex-col flex-1 items-center bg-background font-sans transition-colors duration-500 overflow-hidden min-h-screen pt-36 md:pt-44 pb-24">
@@ -20,59 +71,35 @@ export default function Services() {
         {/* Hero */}
         <div className="flex flex-col gap-8">
           <motion.div className="flex flex-col gap-2" variants={fadeUp} custom={0} initial="hidden" animate="show">
-            <span className="font-mono text-xs uppercase tracking-widest text-[#80eb34] font-bold">Services</span>
+            <span className="font-mono text-xs uppercase tracking-widest text-[#80eb34] font-bold">What I Do</span>
             <h1 className="font-norwester text-[3.5rem] sm:text-[5rem] md:text-[6rem] lg:text-[7rem] leading-[0.92] tracking-tighter text-black dark:text-white uppercase">
-              How I can <span className="text-[#80eb34]">help.</span>
+              Build better.<br /><span className="text-[#80eb34]">Automate smarter.</span>
             </h1>
           </motion.div>
 
           <motion.p className="font-balgin text-lg md:text-xl leading-relaxed text-neutral-700 dark:text-neutral-300 max-w-2xl mt-4" variants={fadeUp} custom={1} initial="hidden" animate="show">
-            I specialize in building clean web applications, automating internal workflows, and integrating AI into practical tools. Below is a breakdown of the specific areas I work in.
+            I build modern websites, automate repetitive workflows, and integrate AI where it actually makes a difference. Choose the kind of problem you want to solve.
           </motion.p>
         </div>
 
-        {/* Web Development Section */}
-        <motion.section id="web-development" className="flex flex-col gap-10 scroll-mt-32" variants={fadeUp} custom={2} initial="hidden" animate="show">
-          <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 pb-5 border-b-2 border-black dark:border-white">
-            <h2 className="font-norwester text-2xl md:text-3xl uppercase tracking-wider text-black dark:text-white">Web Development</h2>
-            <span className="font-mono text-xs uppercase tracking-widest text-neutral-400">01</span>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12">
-            <div id="fullstack" className="flex flex-col gap-4 scroll-mt-32">
-              <h3 className="font-norwester text-xl uppercase tracking-wide text-black dark:text-white">Full Stack Development</h3>
-              <p className="font-balgin text-base leading-relaxed text-neutral-600 dark:text-neutral-400">End-to-end web apps, custom platforms, and robust APIs built with Next.js, React, Node, and TypeScript.</p>
-            </div>
-            <div id="ui-enhancement" className="flex flex-col gap-4 scroll-mt-32">
-              <h3 className="font-norwester text-xl uppercase tracking-wide text-black dark:text-white">UI Enhancement</h3>
-              <p className="font-balgin text-base leading-relaxed text-neutral-600 dark:text-neutral-400">Refining interactions, improving responsiveness, and adding visual polish to existing web applications.</p>
-            </div>
-            <div id="migration" className="flex flex-col gap-4 scroll-mt-32">
-              <h3 className="font-norwester text-xl uppercase tracking-wide text-black dark:text-white">Migration &amp; Modernization</h3>
-              <p className="font-balgin text-base leading-relaxed text-neutral-600 dark:text-neutral-400">Upgrading legacy codebases and migrating them to modern, fast Next.js stacks.</p>
-            </div>
-          </div>
-        </motion.section>
-
-        {/* AI & Automation Section */}
-        <motion.section id="ai-automation" className="flex flex-col gap-10 scroll-mt-32" variants={fadeUp} custom={3} initial="hidden" animate="show">
-          <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 pb-5 border-b-2 border-black dark:border-white">
-            <h2 className="font-norwester text-2xl md:text-3xl uppercase tracking-wider text-black dark:text-white">AI &amp; Automation</h2>
-            <span className="font-mono text-xs uppercase tracking-widest text-neutral-400">02</span>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12">
-            <div id="marketing-automation" className="flex flex-col gap-4 scroll-mt-32">
-              <h3 className="font-norwester text-xl uppercase tracking-wide text-black dark:text-white">Marketing Automation</h3>
-              <p className="font-balgin text-base leading-relaxed text-neutral-600 dark:text-neutral-400">Automated email funnels, lead scoring, and campaign workflows connected through Make or n8n.</p>
-            </div>
-            <div id="crm-integration" className="flex flex-col gap-4 scroll-mt-32">
-              <h3 className="font-norwester text-xl uppercase tracking-wide text-black dark:text-white">CRM Integration</h3>
-              <p className="font-balgin text-base leading-relaxed text-neutral-600 dark:text-neutral-400">Seamless two-way syncs and custom data pipelines with HubSpot, Salesforce, Airtable, and Notion.</p>
-            </div>
-            <div id="sales-automation" className="flex flex-col gap-4 scroll-mt-32">
-              <h3 className="font-norwester text-xl uppercase tracking-wide text-black dark:text-white">Sales Automation</h3>
-              <p className="font-balgin text-base leading-relaxed text-neutral-600 dark:text-neutral-400">Outreach pipelines, automatic follow-ups, and meeting syncs to keep your pipeline moving without manual work.</p>
-            </div>
-          </div>
+        <motion.section className="grid gap-5 md:grid-cols-2 lg:grid-cols-3" variants={fadeUp} custom={2} initial="hidden" animate="show">
+          {services.map((service) => (
+            <motion.article
+              key={service.id}
+              id={service.anchor}
+              className="group relative flex scroll-mt-32 flex-col overflow-hidden rounded-[1.5rem] border border-black/5 bg-white/50 p-6 shadow-[0_16px_40px_rgba(17,17,17,0.04)] transition-all duration-300 hover:-translate-y-2 hover:border-[#80eb34]/60 hover:bg-[#80eb34]/10 hover:shadow-[0_22px_45px_rgba(128,235,52,0.12)] dark:border-white/10 dark:bg-white/5 dark:hover:border-[#80eb34]/40"
+              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 18 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: Number(service.id) * 0.05 }}
+            >
+              <span className="absolute right-5 top-5 font-mono text-[10px] text-neutral-400 transition-colors group-hover:text-[#5cba1d] dark:group-hover:text-[#80eb34]">/ / /</span>
+              <span className="font-norwester text-xs uppercase tracking-[0.28em] text-[#80eb34]">{service.id}</span>
+              <h2 className="mt-5 font-norwester text-2xl uppercase tracking-[0.08em] text-black dark:text-white">{service.title}</h2>
+              <p className="mt-4 font-balgin text-base leading-relaxed text-neutral-600 dark:text-neutral-300">{service.description}</p>
+              <p className="mt-auto pt-8 font-mono text-[10px] uppercase tracking-[0.16em] text-neutral-500">{service.detail}</p>
+            </motion.article>
+          ))}
         </motion.section>
 
         {/* CTA Strip */}

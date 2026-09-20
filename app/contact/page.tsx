@@ -215,7 +215,7 @@ export default function Contact() {
                 Start a Project
               </h2>
               <span className="font-mono text-xs uppercase tracking-widest text-neutral-400">
-                Inquiry
+                Enquiry
               </span>
             </div>
 
@@ -380,7 +380,7 @@ export default function Contact() {
                       Sending...
                     </>
                   ) : (
-                    "Send Inquiry →"
+                    "Send Enquiry →"
                   )}
                 </button>
               </div>

@@ -32,24 +32,44 @@ const services = [
     description:
       "I connect LLMs and AI workflows into real products, from smart document processing and chat experiences to retrieval systems and automation.",
   },
-];
-
-const skillGroups = [
-  { category: "Frontend", items: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"] },
-  { category: "Backend", items: ["Node.js", "Python", "REST APIs", "PostgreSQL", "MongoDB"] },
-  { category: "Automation", items: ["n8n", "Make", "Zapier", "Web Scraping", "Workflow Design"] },
-  { category: "AI Tools", items: ["OpenAI API", "LangChain", "Prompt Engineering", "RAG Systems"] },
+  {
+    id: "04",
+    title: "UI Enhancement",
+    description:
+      "I refine existing interfaces with clearer layouts, smoother interactions, and responsive design that feels polished on every screen.",
+  },
+  {
+    id: "05",
+    title: "Migration & Modernization",
+    description:
+      "I upgrade legacy applications and move them to modern, maintainable stacks with better performance, accessibility, and scalability.",
+  },
+  {
+    id: "06",
+    title: "AI Chatbot Services",
+    description:
+      "I build practical AI chatbots for businesses that answer questions, support customers, qualify leads, and connect with your existing tools.",
+  },
 ];
 
 export default function Home() {
   return (
     <div className="flex flex-col flex-1 items-center bg-background font-sans transition-colors duration-500 overflow-hidden">
-      <main className="flex flex-1 w-full max-w-7xl flex-col lg:flex-row items-center justify-between py-32 px-6 md:px-12 bg-background pt-40 gap-12 lg:gap-20 transition-colors duration-500">
-        <div className="flex min-w-0 flex-col items-start gap-6 max-w-xl lg:max-w-2xl mt-8 md:mt-16 w-full">
-          <motion.h1
-            className="font-norwester text-[3rem] sm:text-[4rem] md:text-[4.5rem] lg:text-[5rem] leading-[1.05] tracking-tighter text-black dark:text-white"
+      <main className="relative flex min-h-[min(820px,calc(100vh-5rem))] flex-1 w-full max-w-7xl flex-col justify-center lg:flex-row items-center justify-between px-6 py-24 md:px-12 md:py-32 bg-background gap-14 lg:gap-20 transition-colors duration-500">
+        <div className="mt-8 flex min-w-0 w-full max-w-xl flex-col items-start gap-6 md:mt-16 lg:w-[52%] lg:max-w-none">
+          <motion.p
+            className="max-w-sm border-l-2 border-[#80eb34] pl-4 font-balgin text-lg leading-snug text-neutral-600 dark:text-neutral-400 md:text-xl"
             variants={fadeUp}
             custom={0}
+            initial="hidden"
+            animate="show"
+          >
+            Good work starts where the obvious solution ends.
+          </motion.p>
+          <motion.h1
+            className="font-norwester text-[3.25rem] leading-[0.98] tracking-tighter text-black dark:text-white sm:text-[4.5rem] md:text-[5rem] lg:text-[4.75rem] xl:text-[5rem]"
+            variants={fadeUp}
+            custom={1}
             initial="hidden"
             animate="show"
           >
@@ -58,7 +78,7 @@ export default function Home() {
               BETTER,
             </span>
             <br />
-            <span className="sm:whitespace-nowrap">
+            <span className="lg:whitespace-nowrap">
               Automate{" "}
               <span className="relative inline-block z-10">
                 SMARTER.
@@ -73,7 +93,7 @@ export default function Home() {
           </motion.h1>
 
           <motion.p
-            className="font-balgin max-w-lg md:max-w-xl text-base md:text-[1.15rem] leading-relaxed text-neutral-700 dark:text-neutral-400 tracking-wide mt-2"
+            className="max-w-lg font-balgin text-base leading-relaxed tracking-wide text-neutral-700 dark:text-neutral-400 md:text-[1.15rem]"
             variants={fadeUp}
             custom={2}
             initial="hidden"
@@ -83,7 +103,7 @@ export default function Home() {
           </motion.p>
 
           <motion.div
-            className="flex flex-col sm:flex-row items-center gap-4 mt-8 w-full sm:w-auto"
+            className="mt-6 flex w-full flex-col items-center gap-3 sm:w-auto sm:flex-row"
             variants={fadeUp}
             custom={3}
             initial="hidden"
@@ -91,109 +111,90 @@ export default function Home() {
           >
             <a
               href="/work"
-              className="w-full sm:w-auto flex items-center justify-center bg-[#80eb34] text-black font-norwester text-lg uppercase tracking-widest px-8 py-4 rounded-2xl hover:-translate-y-1 hover:shadow-lg hover:shadow-[#80eb34]/30 active:translate-y-0 transition-all duration-300"
+              className="flex w-full items-center justify-center rounded-xl bg-[#80eb34] px-7 py-4 font-norwester text-base uppercase tracking-widest text-black transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-[#80eb34]/30 active:translate-y-0 sm:w-auto"
             >
               View my work
             </a>
             <a
               href="/contact"
-              className="w-full sm:w-auto flex items-center justify-center bg-black dark:bg-white text-white dark:text-black font-norwester text-lg uppercase tracking-widest px-8 py-4 rounded-2xl hover:-translate-y-1 hover:shadow-lg active:translate-y-0 transition-all duration-300"
+              className="flex w-full items-center justify-center rounded-xl bg-black px-7 py-4 font-norwester text-base uppercase tracking-widest text-white transition-all duration-300 hover:-translate-y-1 hover:shadow-lg active:translate-y-0 dark:bg-white dark:text-black sm:w-auto"
             >
               Let&apos;s work together
             </a>
           </motion.div>
+
         </div>
 
-        <div className="flex flex-col items-center mt-12 lg:mt-0 w-full max-w-[320px] sm:max-w-[380px] md:max-w-[460px]">
-          <div className="relative w-full aspect-square flex items-center justify-center">
-            <motion.div
-              className="absolute inset-0 w-full h-full pointer-events-none z-0"
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1, ease: "easeOut", delay: 0.3 }}
-            >
-              <svg className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140%] h-[140%] text-[#80eb34]" viewBox="0 0 200 200" fill="none" stroke="currentColor" strokeWidth="0.75">
-                <ellipse cx="100" cy="100" rx="95" ry="70" transform="rotate(-20 100 100)" />
-              </svg>
-
-              <svg className="absolute -top-4 -left-4 w-12 h-12 text-[#80eb34]" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
-                <path d="M14 32 L4 18 M24 28 L20 8 M34 32 L44 18" />
-              </svg>
-
-              <svg className="absolute top-[60%] -right-4 w-10 h-10 text-[#80eb34]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round">
-                <path d="M12 2 Q12 12 2 12 Q12 12 12 22 Q12 12 22 12 Q12 12 12 2 Z" />
-              </svg>
-            </motion.div>
-
-            <motion.div
-              className="relative w-full h-full flex items-center justify-center z-10"
-              initial={{ opacity: 0, scale: 0.85 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
+        <div className="mt-12 flex w-full max-w-[320px] shrink-0 flex-col items-center sm:max-w-[380px] md:max-w-[420px] lg:mt-0 lg:w-[40%] lg:max-w-none">
+          <div className="relative h-[min(82vw,320px)] w-full shrink-0 aspect-square sm:h-auto">
+              <motion.div
+                className="absolute left-[-4%] top-[8%] h-[78%] w-[112%] rounded-[50%] border-2 border-[#80eb34]"
+                initial={{ opacity: 0, scale: 0.9, rotate: -12 }}
+                animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
+            />
+              <motion.div
+                className="absolute bottom-[8%] left-[5%] h-[68%] w-[68%] rounded-[2rem] bg-[#80eb34] sm:rounded-[3rem]"
+                initial={{ opacity: 0, scale: 0.85, rotate: -18 }}
+                animate={{ opacity: 1, scale: 1, rotate: -10 }}
+                transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
+            />
+              <motion.div
+                className="absolute right-[6%] top-[10%] h-[76%] w-[70%] rotate-[9deg] overflow-hidden rounded-[2rem] border-4 border-black bg-black shadow-[0_28px_60px_rgba(17,17,17,0.28)] dark:border-white sm:rounded-[3rem]"
+                initial={{ opacity: 0, scale: 0.82, rotate: 18 }}
+                animate={{ opacity: 1, scale: 1, rotate: 9 }}
+                transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.3 }}
             >
               <motion.div
-                className="absolute w-[75%] h-[75%] bg-[#80eb34] rounded-[2rem] sm:rounded-[3rem]"
-                animate={{
-                  rotate: [-15, -11, -15],
-                  y: [0, -12, 0],
-                }}
-                transition={{
-                  duration: 5,
-                  ease: "easeInOut",
-                  repeat: Infinity,
-                  repeatType: "loop",
-                }}
-                style={{ translateX: "-15%" }}
-              />
-              <motion.div
-                className="absolute w-[75%] h-[75%] bg-black dark:bg-white rounded-[2rem] sm:rounded-[3rem] shadow-2xl overflow-hidden relative"
-                animate={{
-                  rotate: [15, 11, 15],
-                  y: [0, 12, 0],
-                }}
-                transition={{
-                  duration: 5,
-                  ease: "easeInOut",
-                  repeat: Infinity,
-                  repeatType: "loop",
-                }}
-                style={{ translateX: "15%" }}
+                className="absolute inset-0 h-full w-full"
+                  animate={{ scale: [1, 1.025, 1] }}
+                transition={{ duration: 8, ease: "easeInOut", repeat: Infinity }}
               >
-                <motion.div
-                  className="absolute inset-0 w-full h-full scale-[1.35]"
-                  animate={{
-                    rotate: [-15, -11, -15],
-                  }}
-                  transition={{
-                    rotate: { duration: 5, ease: "easeInOut", repeat: Infinity, repeatType: "loop" },
-                  }}
-                >
-                  <Image
-                    src="/logo/profile.webp"
-                    alt="Abdullah - Software Developer & Automation Specialist"
-                    fill
-                    priority
-                    sizes="(max-width: 640px) 480px, (max-width: 768px) 600px, 800px"
-                    className="object-cover"
-                    quality={95}
-                  />
-                </motion.div>
+                <Image
+                  src="/logo/profile.webp"
+                  alt="Abdullah - Software Developer & Automation Specialist"
+                  fill
+                  priority
+                  sizes="(max-width: 640px) 62vw, (max-width: 768px) 280px, 360px"
+                  className="object-cover object-[center_30%]"
+                  quality={100}
+                />
               </motion.div>
             </motion.div>
+
+            <motion.span
+              className="absolute left-[7%] top-[4%] z-20 h-7 w-1 rotate-[-24deg] rounded-full bg-[#80eb34]"
+              initial={{ opacity: 0, scaleY: 0 }}
+              animate={{ opacity: 1, scaleY: 1 }}
+              transition={{ delay: 0.8, duration: 0.3 }}
+            />
+            <motion.span
+              className="absolute left-[14%] top-[1%] z-20 h-6 w-1 rotate-[-8deg] rounded-full bg-[#80eb34]"
+              initial={{ opacity: 0, scaleY: 0 }}
+              animate={{ opacity: 1, scaleY: 1 }}
+              transition={{ delay: 0.9, duration: 0.3 }}
+            />
+            <motion.span
+              className="absolute left-[21%] top-[4%] z-20 h-6 w-1 rotate-[34deg] rounded-full bg-[#80eb34]"
+              initial={{ opacity: 0, scaleY: 0 }}
+              animate={{ opacity: 1, scaleY: 1 }}
+              transition={{ delay: 1, duration: 0.3 }}
+            />
           </div>
 
           <motion.div
-            className="mt-12 flex items-center justify-center gap-x-3 text-xs sm:text-sm font-bold text-neutral-900 dark:text-neutral-100 uppercase tracking-widest"
-            initial={{ opacity: 0, y: 20 }}
+            className="mt-4 flex items-center gap-3 font-norwester text-xs uppercase tracking-[0.16em] text-black dark:text-white"
+            initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
+            transition={{ duration: 0.6, delay: 0.9 }}
           >
-            <span className="relative flex h-2.5 w-2.5 sm:h-3 sm:w-3 shrink-0">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#80eb34] opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2.5 w-2.5 sm:h-3 sm:w-3 bg-[#80eb34]"></span>
+            <span className="relative flex h-3 w-3">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#80eb34] opacity-60" />
+              <span className="relative inline-flex h-3 w-3 rounded-full bg-[#80eb34]" />
             </span>
-            <span>Available for freelance projects</span>
+            Available for freelance projects
           </motion.div>
+
         </div>
       </main>
 
@@ -210,47 +211,21 @@ export default function Home() {
             <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-neutral-500">Capabilities</span>
           </div>
 
-          <div className="grid gap-8 md:grid-cols-3">
+          <div className="grid gap-5 md:grid-cols-3">
             {services.map((service) => (
               <motion.div
                 key={service.id}
-                className="group rounded-[2rem] border border-black/5 bg-white/50 p-6 shadow-[0_16px_40px_rgba(17,17,17,0.04)] transition-all duration-300 hover:-translate-y-1 hover:border-[#80eb34]/40 hover:bg-[#80eb34]/5 dark:border-white/10 dark:bg-white/5 dark:hover:border-[#80eb34]/40"
+                className="group relative overflow-hidden rounded-[1.5rem] border border-black/5 bg-white/50 p-6 shadow-[0_16px_40px_rgba(17,17,17,0.04)] transition-all duration-300 hover:-translate-y-2 hover:border-[#80eb34]/60 hover:bg-[#80eb34]/10 hover:shadow-[0_22px_45px_rgba(128,235,52,0.12)] dark:border-white/10 dark:bg-white/5 dark:hover:border-[#80eb34]/40"
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
+                initial={{ opacity: 0, y: 20 }}
+                transition={{ duration: 0.5, delay: Number(service.id) * 0.05 }}
               >
+                <span className="absolute right-5 top-5 font-mono text-[10px] text-neutral-400 transition-colors group-hover:text-[#5cba1d] dark:group-hover:text-[#80eb34]">/ / /</span>
                 <span className="font-norwester text-xs uppercase tracking-[0.28em] text-[#80eb34]">{service.id}</span>
                 <h3 className="mt-5 font-norwester text-2xl uppercase tracking-[0.08em] text-black dark:text-white">{service.title}</h3>
                 <p className="mt-4 font-balgin text-base leading-relaxed text-neutral-600 dark:text-neutral-300">{service.description}</p>
               </motion.div>
-            ))}
-          </div>
-        </motion.section>
-
-        <motion.section
-          className="flex flex-col gap-10"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-120px" }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-        >
-          <div className="flex flex-col justify-between gap-3 border-b-2 border-black pb-5 dark:border-white sm:flex-row sm:items-end">
-            <h2 className="font-norwester text-2xl uppercase tracking-[0.12em] text-black dark:text-white md:text-3xl">Skills and Tools</h2>
-            <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-neutral-500">Tech</span>
-          </div>
-
-          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-            {skillGroups.map((group) => (
-              <div key={group.category} className="rounded-[1.5rem] border border-black/5 bg-white/50 p-5 dark:border-white/10 dark:bg-white/5">
-                <h3 className="font-norwester text-xs uppercase tracking-[0.28em] text-[#5cba1d] dark:text-[#80eb34]">{group.category}</h3>
-                <ul className="mt-5 space-y-3">
-                  {group.items.map((skill) => (
-                    <li key={skill} className="flex items-center gap-3 font-mono text-sm text-neutral-700 dark:text-neutral-200">
-                      <span className="h-1.5 w-1.5 rounded-full bg-[#80eb34]" />
-                      {skill}
-                    </li>
-                  ))}
-                </ul>
-              </div>
             ))}
           </div>
         </motion.section>

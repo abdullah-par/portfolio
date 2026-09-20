@@ -35,11 +35,11 @@ export async function POST(req: Request) {
         from: process.env.RESEND_FROM_EMAIL || "Portfolio Contact <onboarding@resend.dev>",
         to: [recipient],
         replyTo: email,
-        subject: `New Project Inquiry from ${name} [${service ? service.toUpperCase() : "GENERAL"}]`,
+        subject: `New Project Enquiry from ${name} [${service ? service.toUpperCase() : "GENERAL"}]`,
         html: `
           <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 24px; background-color: #fdfdfc; border: 1px solid #e5e5e0; border-radius: 12px; color: #1c1c1c;">
             <div style="border-bottom: 2px solid #80eb34; padding-bottom: 16px; margin-bottom: 20px;">
-              <h1 style="font-size: 22px; margin: 0; text-transform: uppercase; letter-spacing: -0.5px;">New Portfolio Inquiry</h1>
+              <h1 style="font-size: 22px; margin: 0; text-transform: uppercase; letter-spacing: -0.5px;">New Portfolio Enquiry</h1>
               <p style="margin: 4px 0 0 0; color: #6b6b6b; font-size: 14px;">Received from your website contact form</p>
             </div>
             
