@@ -45,7 +45,7 @@ export default function Home() {
   return (
     <div className="flex flex-col flex-1 items-center bg-background font-sans transition-colors duration-500 overflow-hidden">
       <main className="flex flex-1 w-full max-w-7xl flex-col lg:flex-row items-center justify-between py-32 px-6 md:px-12 bg-background pt-40 gap-12 lg:gap-20 transition-colors duration-500">
-        <div className="flex flex-col items-start gap-6 max-w-xl lg:max-w-2xl mt-8 md:mt-16 w-full">
+        <div className="flex min-w-0 flex-col items-start gap-6 max-w-xl lg:max-w-2xl mt-8 md:mt-16 w-full">
           <motion.h1
             className="font-norwester text-[3rem] sm:text-[4rem] md:text-[4.5rem] lg:text-[5rem] leading-[1.05] tracking-tighter text-black dark:text-white"
             variants={fadeUp}
@@ -58,7 +58,7 @@ export default function Home() {
               BETTER,
             </span>
             <br />
-            <span className="whitespace-nowrap">
+            <span className="sm:whitespace-nowrap">
               Automate{" "}
               <span className="relative inline-block z-10">
                 SMARTER.

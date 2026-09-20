@@ -7,6 +7,12 @@
   --foreground: #121212;
 }
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 .dark {
   --background: #0b0b0b;
   --foreground: #f5f5f5;
@@ -30,6 +36,7 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
   text-rendering: optimizeLegibility;
+  overflow-x: hidden;
 }
 
 ::selection {
