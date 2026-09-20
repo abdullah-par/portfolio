@@ -139,12 +139,12 @@ export function Navbar() {
                       </Link>
 
                       {/* Minimal Stripe-style Dropdown Menu */}
-                      <div className="absolute top-full -left-28 lg:-left-36 pt-4 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-200 ease-out z-50">
-                        <div className="w-[660px] lg:w-[720px] p-8 bg-white dark:bg-[#0d0d0d] border border-neutral-200 dark:border-neutral-800 rounded-2xl shadow-2xl backdrop-blur-xl">
-                          <div className="grid grid-cols-12 gap-10">
+                      <div className="absolute top-full right-0 pt-4 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-200 ease-out z-50">
+                        <div className="w-[min(720px,calc(100vw-2rem))] max-h-[calc(100vh-8rem)] overflow-y-auto p-6 sm:p-8 bg-white dark:bg-[#0d0d0d] border border-neutral-200 dark:border-neutral-800 rounded-2xl shadow-2xl backdrop-blur-xl">
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 sm:gap-10">
                             
                             {/* Column 1: Web Development (6 cols) */}
-                            <div className="col-span-6 flex flex-col gap-4">
+                            <div className="flex flex-col gap-4">
                               <span className="font-norwester text-xs uppercase tracking-widest text-neutral-400 dark:text-neutral-500 font-semibold">
                                 Web Development
                               </span>
@@ -188,7 +188,7 @@ export function Navbar() {
                             </div>
 
                             {/* Column 2: AI & Automation (6 cols) */}
-                            <div className="col-span-6 flex flex-col gap-4 border-l border-neutral-100 dark:border-neutral-800/80 pl-8">
+                            <div className="flex flex-col gap-4 border-t border-neutral-100 dark:border-neutral-800/80 pt-8 sm:border-l sm:border-t-0 sm:pl-8 sm:pt-0">
                               <span className="font-norwester text-xs uppercase tracking-widest text-neutral-400 dark:text-neutral-500 font-semibold">
                                 AI & Automation
                               </span>
