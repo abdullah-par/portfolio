@@ -4,9 +4,9 @@ const footerLinks = [
   {
     heading: "What I Do",
     links: [
-      { label: "Web Development", href: "/services#web" },
+      { label: "Web Development", href: "/services#web-development" },
       { label: "Automation", href: "/services#automation" },
-      { label: "AI Systems", href: "/services#ai" },
+      { label: "AI Systems", href: "/services#ai-integration" },
     ],
   },
   {
@@ -60,99 +60,71 @@ export const socialLinks = [
 
 export function Footer() {
   return (
-    <footer className="w-full transition-colors duration-500">
+    <footer className="w-full bg-[#101110] text-white transition-colors duration-500 dark:bg-[#080908]">
+      <div className="mx-auto max-w-7xl px-6 py-16 md:px-12 md:py-24">
+        <div className="grid gap-16 lg:grid-cols-[1.2fr_1fr] lg:gap-24">
+          <div className="flex flex-col items-start">
+            <span className="mb-6 flex items-center gap-3 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-[#80eb34]">
+              <span className="h-2 w-2 rounded-full bg-[#80eb34]" />
+              Start a conversation
+            </span>
+            <h2 className="max-w-xl font-norwester text-5xl uppercase leading-[0.88] tracking-[0.01em] text-white sm:text-7xl md:text-8xl">
+              Let&apos;s <span className="text-[#80eb34]">talk.</span>
+            </h2>
+            <p className="mt-7 max-w-md font-balgin text-base leading-[1.65] text-white/60 md:text-lg">
+              Have a product, process, or idea that needs a better system? Tell me what you are building.
+            </p>
+            <a
+              href="https://mail.google.com/mail/?view=cm&fs=1&to=abdullahbuilds786%40gmail.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group mt-9 flex max-w-full items-center gap-3 border-b border-white/25 pb-3 font-mono text-sm tracking-[0.03em] text-white transition-colors hover:border-[#80eb34] hover:text-[#80eb34] md:text-base"
+            >
+              <span className="truncate">abdullahbuilds786@gmail.com</span>
+              <span className="text-[#80eb34] transition-transform group-hover:translate-x-1">-&gt;</span>
+            </a>
+          </div>
 
-      {/* Upper band — slightly darker off-white / slightly lighter dark for contrast */}
-      <div className="bg-[#f0efe9] dark:bg-[#1a1a18] border-t border-[#e2e0d8] dark:border-[#2a2a28]">
-        <div className="max-w-7xl mx-auto px-6 md:px-12 pt-16 pb-14">
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-16">
-
-            {/* Left — CTA + Contact */}
-            <div className="flex flex-col gap-8">
-              <div>
-                <h2 className="font-norwester text-5xl md:text-6xl text-[#1c1c1c] dark:text-[#ededed] leading-tight tracking-tighter">
-                  Let’s{" "}
-                  {/* Primary green accent on the keyword */}
-                  <span className="text-[#80eb34]">Talk.</span>
-                </h2>
-                {/* Subtext uses a step-down muted tone */}
-                <p className="mt-3 font-balgin text-[#6b6b62] dark:text-[#8a8a80] text-base max-w-sm">
-                  Got a project in mind? I’d love to hear what you’re building.
-                </p>
+          <div className="grid grid-cols-2 gap-x-8 gap-y-12 sm:grid-cols-3 lg:pt-3">
+            {footerLinks.map((col) => (
+              <div key={col.heading} className="flex flex-col gap-4">
+                <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-white/40">{col.heading}</p>
+                {col.links.map((link) => (
+                  <Link
+                    key={link.label}
+                    href={link.href}
+                    className="w-fit font-balgin text-[15px] leading-tight text-white/70 transition-colors hover:text-[#80eb34]"
+                  >
+                    {link.label}
+                  </Link>
+                ))}
               </div>
-
-              <div className="flex flex-col gap-3">
-                {/* Label — lightest text tier */}
-                <p className="font-norwester text-xs tracking-widest uppercase text-[#9a9a90] dark:text-[#6a6a60] mb-1">
-                  Contact Info
-                </p>
-                {/* Email — mail icon, mid-tone text */}
-                <a
-                  href="mailto:abdullahbuilds786@gmail.com"
-                  className="group flex items-center gap-2.5 text-sm font-mono text-[#3a3a36] dark:text-[#c8c8be] hover:text-[#5cba1d] dark:hover:text-[#80eb34] transition-colors duration-200"
-                >
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="shrink-0 text-[#80eb34]">
-                    <rect width="20" height="16" x="2" y="4" rx="2"/>
-                    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
-                  </svg>
-                  abdullahbuilds786@gmail.com
-                </a>
+            ))}
+            <div className="col-span-2 flex flex-col gap-4 sm:col-span-3">
+              <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-white/40">Find me online</p>
+              <div className="flex items-center gap-3">
+                {socialLinks.map((s) => (
+                  <a
+                    key={s.label}
+                    href={s.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={s.label}
+                    className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 text-white/60 transition-all duration-200 hover:-translate-y-1 hover:border-[#80eb34] hover:bg-[#80eb34] hover:text-black"
+                  >
+                    {s.icon}
+                  </a>
+                ))}
               </div>
-
-              {/* Socials */}
-              <div className="flex flex-col gap-3 mt-2">
-                <p className="font-norwester text-xs tracking-widest uppercase text-[#9a9a90] dark:text-[#6a6a60] mb-1">
-                  Socials
-                </p>
-                <div className="flex items-center gap-3">
-                  {socialLinks.map((s) => (
-                    <a
-                      key={s.label}
-                      href={s.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={s.label}
-                      className="w-9 h-9 flex items-center justify-center rounded-lg border border-[#ccccc4] dark:border-[#2e2e2c] text-[#6b6b62] dark:text-[#6a6a60] hover:border-[#80eb34] hover:text-[#5cba1d] dark:hover:text-[#80eb34] hover:bg-[#d4f9b8]/40 dark:hover:bg-[#3d8a10]/20 hover:-translate-y-0.5 transition-all duration-200"
-                    >
-                      {s.icon}
-                    </a>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            {/* Right — Nav columns */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-10">
-              {footerLinks.map((col) => (
-                <div key={col.heading} className="flex flex-col gap-3">
-                  <p className="font-norwester text-base tracking-widest uppercase text-[#1c1c1c] dark:text-[#ededed] mb-1">
-                    {col.heading}
-                  </p>
-                  {col.links.map((link) => (
-                    <Link
-                      key={link.label}
-                      href={link.href}
-                      className="relative group text-sm font-balgin text-[#5a5a52] dark:text-[#a0a096] hover:text-[#1c1c1c] dark:hover:text-[#ededed] transition-colors duration-200 w-fit"
-                    >
-                      {link.label}
-                      {/* Underline uses mid-green shade */}
-                      <span className="absolute -bottom-0.5 left-0 w-full h-[1px] bg-[#b1f08a] dark:bg-[#5cba1d] scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300 ease-out" />
-                    </Link>
-                  ))}
-                </div>
-              ))}
             </div>
           </div>
         </div>
-      </div>
 
-      {/* Lower band — even darker/lighter to create a second tonal layer */}
-      <div className="bg-[#e8e7e0] dark:bg-[#0e0e0d] border-t border-[#d8d7cf] dark:border-[#222220]">
-        <div className="max-w-7xl mx-auto px-6 md:px-12 py-6 flex items-center justify-center text-center">
-          {/* Copyright — softest text tier */}
-          <p className="text-xs font-mono text-[#9a9a90] dark:text-[#4a4a46] tracking-widest uppercase">
-            © {new Date().getFullYear()} Abdullah.dev — All rights reserved
-          </p>
+        <div className="mt-20 border-t border-white/15 pt-5">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+            <p className="font-norwester text-3xl tracking-[0.03em] text-white/90 md:text-5xl">ABDULLAH<span className="text-[#80eb34]">.DEV</span></p>
+            <p className="font-mono text-[10px] font-medium uppercase tracking-[0.16em] text-white/35">© {new Date().getFullYear()} / Built with intent</p>
+          </div>
         </div>
       </div>
 

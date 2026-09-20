@@ -439,7 +439,9 @@ export function Navbar() {
                   Direct Email
                 </span>
                 <a
-                  href="mailto:abdullahbuilds786@gmail.com"
+                  href="https://mail.google.com/mail/?view=cm&fs=1&to=abdullahbuilds786%40gmail.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="font-mono text-sm text-neutral-800 dark:text-neutral-200 hover:text-[#80eb34] transition-colors truncate"
                 >
                   abdullahbuilds786@gmail.com

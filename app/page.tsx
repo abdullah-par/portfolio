@@ -126,7 +126,7 @@ export default function Home() {
         </div>
 
         <div className="mt-12 flex w-full max-w-[320px] shrink-0 flex-col items-center sm:max-w-[380px] md:max-w-[420px] lg:mt-0 lg:w-[40%] lg:max-w-none">
-          <div className="relative h-[min(82vw,320px)] w-full shrink-0 aspect-square sm:h-auto">
+          <div className="relative h-[min(88vw,380px)] w-full shrink-0 aspect-square sm:h-auto">
               <motion.div
                 className="absolute left-[-4%] top-[8%] h-[78%] w-[112%] rounded-[50%] border-2 border-[#80eb34]"
                 initial={{ opacity: 0, scale: 0.9, rotate: -12 }}
