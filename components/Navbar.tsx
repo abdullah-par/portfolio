@@ -83,13 +83,13 @@ export function Navbar() {
 
   return (
     <>
-      <header className="absolute top-0 left-0 right-0 z-50 flex justify-center w-full pt-8 pb-4 border-b border-neutral-200/50 dark:border-neutral-800/50 bg-background/50 backdrop-blur-sm">
+      <header className="absolute top-0 left-0 right-0 z-50 flex justify-center w-full pt-5 pb-3 border-b border-neutral-200/50 dark:border-neutral-800/50 bg-background/50 backdrop-blur-sm">
         <nav className="flex items-center justify-between w-full max-w-7xl px-6 md:px-12">
           
           {/* Logo */}
           <Link 
             href="/" 
-            className="flex flex-col text-2xl md:text-3xl font-black leading-none tracking-tighter uppercase text-black dark:text-white z-50"
+            className="flex flex-col text-xl md:text-2xl font-black leading-none tracking-tighter uppercase text-black dark:text-white z-50"
             onClick={() => setMobileMenuOpen(false)}
           >
             <span>ABDULLAH</span>
@@ -102,7 +102,7 @@ export function Navbar() {
           <div className="flex items-center gap-3">
             
             {/* Desktop Links */}
-            <div className="hidden md:flex items-center gap-6 lg:gap-8 mr-4">
+            <div className="hidden md:flex items-center gap-5 lg:gap-7 mr-3">
               {navLinks.map((link) => {
                 const isServices = link.name === "SERVICES";
                 const isActive = pathname === link.href || (isServices && pathname.startsWith("/services"));
@@ -115,7 +115,7 @@ export function Navbar() {
                     >
                       <Link
                         href={link.href}
-                        className={`relative flex items-center gap-1.5 font-norwester text-base lg:text-lg uppercase tracking-wide transition-colors ${
+                          className={`relative flex items-center gap-1.5 font-norwester text-sm lg:text-base uppercase tracking-wide transition-colors ${
                           isActive
                             ? "text-[#5cba1d] dark:text-[#80eb34]"
                             : "text-black hover:text-[#80eb34] dark:text-white dark:hover:text-[#80eb34]"
@@ -249,7 +249,7 @@ export function Navbar() {
                   <Link 
                     key={link.name} 
                     href={link.href}
-                    className={`relative group font-norwester text-base lg:text-lg uppercase tracking-wide transition-colors ${
+                    className={`relative group font-norwester text-sm lg:text-base uppercase tracking-wide transition-colors ${
                       isActive 
                         ? "text-[#5cba1d] dark:text-[#80eb34]" 
                         : "text-black hover:text-[#80eb34] dark:text-white dark:hover:text-[#80eb34]"
@@ -266,10 +266,9 @@ export function Navbar() {
 
             {/* Theme Toggle Button */}
             <div className="relative">
-              <div className="absolute inset-0 bg-[#80eb34] rounded-xl translate-x-[3px] translate-y-[3px] md:translate-x-[5px] md:translate-y-[5px]" />
               <button
                 onClick={toggleTheme}
-                className="relative w-10 h-10 md:w-11 md:h-11 flex items-center justify-center bg-black dark:bg-white text-white dark:text-black rounded-xl hover:-translate-y-[1px] hover:-translate-x-[1px] active:translate-y-[2px] active:translate-x-[2px] transition-all cursor-pointer"
+                className="relative flex h-9 w-9 items-center justify-center rounded-xl border border-black/20 bg-transparent text-black transition-all hover:border-black/50 hover:bg-black/5 active:scale-95 dark:border-white/20 dark:text-white dark:hover:border-white/50 dark:hover:bg-white/5 md:h-10 md:w-10 cursor-pointer"
                 aria-label="Toggle theme"
               >
                 {mounted ? (
