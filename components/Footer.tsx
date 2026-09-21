@@ -64,10 +64,6 @@ export function Footer() {
       <div className="mx-auto max-w-7xl px-6 py-16 md:px-12 md:py-24">
         <div className="grid gap-16 lg:grid-cols-[1.2fr_1fr] lg:gap-24">
           <div className="flex flex-col items-start">
-            <span className="mb-6 flex items-center gap-3 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-[#80eb34]">
-              <span className="h-2 w-2 rounded-full bg-[#80eb34]" />
-              Start a conversation
-            </span>
             <h2 className="max-w-xl font-norwester text-5xl uppercase leading-[0.88] tracking-[0.01em] text-white sm:text-7xl md:text-8xl">
               Let&apos;s <span className="text-[#80eb34]">talk.</span>
             </h2>
