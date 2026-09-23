@@ -3,280 +3,400 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion, type Variants } from "framer-motion";
+import { ArrowUpRight, Terminal, Cpu, Layers, Workflow, Bot } from "lucide-react";
 
 const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 32 },
+  hidden: { opacity: 0, y: 28 },
   show: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as const, delay: i * 0.1 },
+    transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] as const, delay: i * 0.08 },
   }),
 };
 
 const services = [
   {
     id: "01",
+    icon: Terminal,
     title: "Web Development",
+    tagline: "High Performance & Scalability",
     description:
-      "I build modern, performant websites and web applications using React and Next.js. Clean code, polished experiences, and production-ready delivery.",
+      "Crafting production-ready web applications and websites with a focus on speed, responsive detail, and clear structure.",
+    tags: ["Web Apps", "Responsive Systems", "Product Sites"],
+    colSpan: "md:col-span-2",
+    highlight: true,
   },
   {
     id: "02",
-    title: "Automation",
+    icon: Workflow,
+    title: "Automation Systems",
+    tagline: "End-to-End Orchestration",
     description:
-      "I identify repetitive manual work and replace it with reliable automation systems using tools like n8n, Make, Zapier, or custom scripts.",
+      "Replacing manual bottlenecks with dependable workflows that keep information moving and teams focused.",
+    tags: ["Process Design", "Workflow Systems", "Operations"],
+    colSpan: "md:col-span-1",
+    highlight: false,
   },
   {
     id: "03",
-    title: "AI Integration",
+    icon: Bot,
+    title: "AI Integration & Agents",
+    tagline: "Practical LLM Implementations",
     description:
-      "I connect LLMs and AI workflows into real products, from smart document processing and chat experiences to retrieval systems and automation.",
+      "Integrating cutting-edge LLMs, structured document extraction, and autonomous agent loops that solve real business operational overhead.",
+    tags: ["AI Workflows", "Knowledge Systems", "Assistants"],
+    colSpan: "md:col-span-1",
+    highlight: false,
   },
   {
     id: "04",
-    title: "UI Enhancement",
+    icon: Layers,
+    title: "UI / UX Polish & Modernization",
+    tagline: "Editorial & Interactive Elegance",
     description:
-      "I refine existing interfaces with clearer layouts, smoother interactions, and responsive design that feels polished on every screen.",
+      "Elevating legacy digital experiences with fluid micro-interactions, responsive design systems, and aesthetic craft that instills buyer trust.",
+    tags: ["Interaction Design", "Clarity", "Accessibility"],
+    colSpan: "md:col-span-2",
+    highlight: true,
   },
   {
     id: "05",
-    title: "Migration & Modernization",
+    icon: Cpu,
+    title: "AI Chatbots & Assistants",
+    tagline: "Smart Lead Gen & Support",
     description:
-      "I upgrade legacy applications and move them to modern, maintainable stacks with better performance, accessibility, and scalability.",
-  },
-  {
-    id: "06",
-    title: "AI Chatbot Services",
-    description:
-      "I build practical AI chatbots for businesses that answer questions, support customers, qualify leads, and connect with your existing tools.",
+      "Autonomous, context-grounded AI chatbots tailored for product demos, client qualification, and 24/7 customer resolution with CRM sync.",
+    tags: ["Customer Support", "Lead Qualification", "Useful Answers"],
+    colSpan: "md:col-span-3",
+    highlight: false,
   },
 ];
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center bg-background font-sans transition-colors duration-500 overflow-hidden">
-      <main className="relative flex min-h-[min(820px,calc(100vh-5rem))] flex-1 w-full max-w-7xl flex-col justify-center lg:flex-row items-center justify-between px-6 py-24 md:px-12 md:py-32 bg-background gap-14 lg:gap-20 transition-colors duration-500">
-        <div className="mt-8 flex min-w-0 w-full max-w-xl flex-col items-start gap-6 md:mt-16 lg:w-[52%] lg:max-w-none">
-          <motion.p
-            className="max-w-sm border-l-2 border-[#80eb34] pl-4 font-balgin text-lg leading-snug text-neutral-600 dark:text-neutral-400 md:text-xl"
-            variants={fadeUp}
-            custom={0}
-            initial="hidden"
-            animate="show"
-          >
-            Good work starts where the obvious solution ends.
-          </motion.p>
-          <motion.h1
-            className="font-norwester text-[3.25rem] leading-[0.98] tracking-tighter text-black dark:text-white sm:text-[4.5rem] md:text-[5rem] lg:text-[4.75rem] xl:text-[5rem]"
-            variants={fadeUp}
-            custom={1}
-            initial="hidden"
-            animate="show"
-          >
-            Build{" "}
-            <span className="text-[#80eb34] underline decoration-[#80eb34] decoration-[4px] md:decoration-[8px] underline-offset-[8px] md:underline-offset-[12px]">
-              BETTER,
-            </span>
-            <br />
-            <span className="lg:whitespace-nowrap">
-              Automate{" "}
-              <span className="relative inline-block z-10">
-                SMARTER.
-                <motion.span
-                  className="absolute bottom-2 md:bottom-3 -left-2 -right-3 md:-left-4 md:-right-5 h-[16px] md:h-[24px] bg-[#b1f08a] dark:bg-[#5cba1d] -z-10 rounded-[20px] -rotate-1"
-                  initial={{ scaleX: 0, originX: 0 }}
-                  animate={{ scaleX: 1 }}
-                  transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1], delay: 0.55 }}
-                />
-              </span>
-            </span>
-          </motion.h1>
+    <div className="page-shell relative flex flex-col flex-1 items-center bg-background font-sans transition-colors duration-500 overflow-hidden">
+      
+      {/* Ambient background glow accents */}
+      <div className="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 w-[720px] h-[450px] glow-spot rounded-full blur-3xl opacity-70 dark:opacity-40" />
+      <div className="pointer-events-none absolute top-[700px] -right-40 w-[500px] h-[500px] glow-spot rounded-full blur-3xl opacity-50 dark:opacity-20" />
 
-          <motion.p
-            className="max-w-lg font-balgin text-base leading-relaxed tracking-wide text-neutral-700 dark:text-neutral-400 md:text-[1.15rem]"
-            variants={fadeUp}
-            custom={2}
-            initial="hidden"
-            animate="show"
-          >
-            I build modern websites, automate repetitive workflows, and integrate AI where it actually makes a difference.
-          </motion.p>
-
-          <motion.div
-            className="mt-6 flex w-full flex-col items-center gap-3 sm:w-auto sm:flex-row"
-            variants={fadeUp}
-            custom={3}
-            initial="hidden"
-            animate="show"
-          >
-            <a
-              href="/work"
-              className="flex w-full items-center justify-center rounded-xl bg-[#80eb34] px-7 py-4 font-norwester text-base uppercase tracking-widest text-black transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-[#80eb34]/30 active:translate-y-0 sm:w-auto"
-            >
-              View my work
-            </a>
-            <a
-              href="/contact"
-              className="flex w-full items-center justify-center rounded-xl bg-black px-7 py-4 font-norwester text-base uppercase tracking-widest text-white transition-all duration-300 hover:-translate-y-1 hover:shadow-lg active:translate-y-0 dark:bg-white dark:text-black sm:w-auto"
-            >
-              Let&apos;s work together
-            </a>
-          </motion.div>
-
-        </div>
-
-        <div className="mt-12 flex w-full max-w-[320px] shrink-0 flex-col items-center sm:max-w-[380px] md:max-w-[420px] lg:mt-0 lg:w-[40%] lg:max-w-none">
-          <div className="relative h-[min(88vw,380px)] w-full shrink-0 aspect-square sm:h-auto">
-              <motion.div
-                className="absolute left-[-4%] top-[8%] h-[78%] w-[112%] rounded-[50%] border-2 border-[#80eb34]"
-                initial={{ opacity: 0, scale: 0.9, rotate: -12 }}
-                animate={{ opacity: 1, scale: 1, rotate: 0 }}
-                transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
-            />
-              <motion.div
-                className="absolute bottom-[8%] left-[5%] h-[68%] w-[68%] rounded-[2rem] bg-[#80eb34] sm:rounded-[3rem]"
-                initial={{ opacity: 0, scale: 0.85, rotate: -18 }}
-                animate={{ opacity: 1, scale: 1, rotate: -10 }}
-                transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
-            />
-              <motion.div
-                className="absolute right-[6%] top-[10%] h-[76%] w-[70%] rotate-[9deg] overflow-hidden rounded-[2rem] border-4 border-black bg-black shadow-[0_28px_60px_rgba(17,17,17,0.28)] dark:border-white sm:rounded-[3rem]"
-                initial={{ opacity: 0, scale: 0.82, rotate: 18 }}
-                animate={{ opacity: 1, scale: 1, rotate: 9 }}
-                transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.3 }}
-            >
-              <motion.div
-                className="absolute inset-0 h-full w-full"
-                  animate={{ scale: [1, 1.025, 1] }}
-                transition={{ duration: 8, ease: "easeInOut", repeat: Infinity }}
-              >
-                <Image
-                  src="/logo/profile.webp"
-                  alt="Abdullah - Software Developer & Automation Specialist"
-                  fill
-                  priority
-                  sizes="(max-width: 640px) 62vw, (max-width: 768px) 280px, 360px"
-                  className="object-cover object-[center_30%]"
-                  quality={100}
-                />
-              </motion.div>
+      {/* ── Sketchy Hero Section ── */}
+      <main className="relative flex flex-col w-full max-w-7xl px-6 pt-32 pb-12 md:px-12 md:pt-40 md:pb-20">
+        
+        {/* Hero Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+          
+          {/* Left: Raw Typographic Statement */}
+          <div className="lg:col-span-7 flex flex-col items-start gap-7">
+            
+            {/* Giant sketchy headline */}
+            <motion.div variants={fadeUp} custom={1} initial="hidden" animate="show">
+              <h1 className="font-norwester text-[3.5rem] sm:text-[5rem] md:text-[6rem] lg:text-[4.75rem] xl:text-[5.5rem] leading-[0.88] tracking-tighter uppercase text-neutral-950 dark:text-white">
+                BUILD <span className="sketch-underline text-[#80eb34]">BETTER,</span>
+                <br />
+                <span className="inline-flex whitespace-nowrap">AUTOMATE <span className="relative inline-block text-[#80eb34]">
+                  <span className="sketch-highlight">SMARTER.</span>
+                  {/* Hand-drawn arrow SVG pointing to this */}
+                  <svg className="absolute -right-10 -top-8 w-10 h-10 text-[#80eb34] rotate-[30deg] hidden md:block" viewBox="0 0 40 40" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+                    <path d="M5 35 Q 15 10, 35 8" />
+                    <path d="M28 3 L35 8 L27 13" />
+                  </svg>
+                </span></span>
+              </h1>
             </motion.div>
 
-            <motion.span
-              className="absolute left-[7%] top-[4%] z-20 h-7 w-1 rotate-[-24deg] rounded-full bg-[#80eb34]"
-              initial={{ opacity: 0, scaleY: 0 }}
-              animate={{ opacity: 1, scaleY: 1 }}
-              transition={{ delay: 0.8, duration: 0.3 }}
-            />
-            <motion.span
-              className="absolute left-[14%] top-[1%] z-20 h-6 w-1 rotate-[-8deg] rounded-full bg-[#80eb34]"
-              initial={{ opacity: 0, scaleY: 0 }}
-              animate={{ opacity: 1, scaleY: 1 }}
-              transition={{ delay: 0.9, duration: 0.3 }}
-            />
-            <motion.span
-              className="absolute left-[21%] top-[4%] z-20 h-6 w-1 rotate-[34deg] rounded-full bg-[#80eb34]"
-              initial={{ opacity: 0, scaleY: 0 }}
-              animate={{ opacity: 1, scaleY: 1 }}
-              transition={{ delay: 1, duration: 0.3 }}
-            />
+            {/* Subheading with sketchy personality */}
+            <motion.p
+              variants={fadeUp} custom={2} initial="hidden" animate="show"
+              className="font-balgin text-lg md:text-xl text-neutral-700 dark:text-neutral-300 max-w-lg leading-relaxed"
+            >
+              I build modern websites, automate repetitive workflows, and integrate AI where it actually makes a difference.
+            </motion.p>
+
+            {/* Sketchy CTA buttons */}
+            <motion.div
+              variants={fadeUp} custom={3} initial="hidden" animate="show"
+              className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto pt-2"
+            >
+              <Link
+                href="/work"
+                className="group inline-flex items-center justify-center gap-3 bg-neutral-950 text-white dark:bg-white dark:text-black px-8 py-4 font-norwester text-base uppercase tracking-widest transition-all duration-300 hover:bg-[#80eb34] hover:text-black sketch-border border-neutral-950 dark:border-white hover:border-[#80eb34]"
+              >
+                <span>View My Work</span>
+                <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+              </Link>
+
+              <Link
+                href="/contact"
+                className="group inline-flex items-center justify-center gap-3 bg-transparent text-neutral-900 dark:text-neutral-100 px-8 py-4 font-norwester text-base uppercase tracking-widest transition-all duration-300 hover:bg-neutral-100 dark:hover:bg-neutral-900 sketch-dash border-neutral-400 dark:border-neutral-700"
+              >
+                Let&apos;s Work Together
+              </Link>
+            </motion.div>
+
+            {/* Rough hand-drawn stat scribbles */}
+            <motion.div
+              variants={fadeUp} custom={4} initial="hidden" animate="show"
+              className="flex flex-wrap items-center gap-6 pt-6 mt-2 border-t-2 border-dashed border-neutral-300 dark:border-neutral-800 w-full max-w-lg"
+            >
+              <div className="flex flex-col">
+                <span className="font-norwester text-3xl text-neutral-950 dark:text-white">100%</span>
+                <span className="font-mono text-[10px] text-neutral-500 uppercase tracking-widest">on-time delivery</span>
+              </div>
+              <div className="h-8 w-px bg-neutral-300 dark:bg-neutral-700" />
+              <div className="flex flex-col">
+                <span className="font-norwester text-3xl text-neutral-950 dark:text-white">SYSTEMS</span>
+                <span className="font-mono text-[10px] text-neutral-500 uppercase tracking-widest">that reduce busywork</span>
+              </div>
+            </motion.div>
+
           </div>
 
-          <motion.div
-            className="mt-4 flex items-center gap-3 font-norwester text-xs uppercase tracking-[0.16em] text-black dark:text-white"
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.9 }}
-          >
-            <span className="relative flex h-3 w-3">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#80eb34] opacity-60" />
-              <span className="relative inline-flex h-3 w-3 rounded-full bg-[#80eb34]" />
-            </span>
-            Available for freelance projects
-          </motion.div>
+          {/* Right: Sketchy Portrait with hand-drawn frame */}
+          <div className="lg:col-span-5 flex justify-center lg:justify-end">
+            <motion.div
+              variants={fadeUp} custom={2} initial="hidden" animate="show"
+              className="relative w-full max-w-[380px]"
+            >
+              {/* Hand-drawn scribble circle behind the photo */}
+              <svg className="absolute -inset-6 w-[calc(100%+48px)] h-[calc(100%+48px)] pointer-events-none -z-10" viewBox="0 0 400 500" fill="none">
+                <ellipse cx="200" cy="250" rx="185" ry="230"
+                  stroke="#80eb34" strokeWidth="2.5" strokeDasharray="8 6"
+                  transform="rotate(-3 200 250)" opacity="0.5"
+                />
+                <ellipse cx="200" cy="250" rx="175" ry="220"
+                  stroke="#80eb34" strokeWidth="1.5"
+                  transform="rotate(2 200 250)" opacity="0.3"
+                />
+              </svg>
+
+              {/* Main photo with rough organic border */}
+              <div className="relative aspect-[4/5] w-full overflow-hidden rounded-[1.5rem] border-[3px] border-neutral-950 dark:border-neutral-300 bg-neutral-200 dark:bg-neutral-900 shadow-[8px_8px_0px_0px_#80eb34] transition-shadow duration-300 hover:shadow-[12px_12px_0px_0px_#80eb34]">
+                <Image
+                  src="/logo/profile.webp"
+                  alt="Abdullah Parvez"
+                  fill
+                  priority
+                  sizes="(max-width: 640px) 90vw, (max-width: 1024px) 380px, 440px"
+                  className="object-cover object-[center_20%]"
+                />
+              </div>
+
+              {/* Hand-drawn arrow annotation pointing to photo */}
+              <div className="absolute -bottom-8 -left-4 flex items-center gap-2 rotate-[-4deg]">
+                <svg className="w-8 h-8 text-[#80eb34]" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+                  <path d="M4 28 Q 12 8, 28 6" />
+                  <path d="M22 2 L28 6 L21 11" />
+                </svg>
+                <span className="font-mono text-xs uppercase tracking-wider text-neutral-600 dark:text-neutral-400 font-semibold whitespace-nowrap">
+                  that&apos;s me!
+                </span>
+              </div>
+
+              {/* Scribbled tag floating top-right */}
+              <div className="absolute -top-3 -right-3 rotate-[3deg] bg-[#80eb34] text-black px-3 py-1 font-mono text-[10px] uppercase tracking-widest font-bold shadow-md">
+                ✦ Available
+              </div>
+
+            </motion.div>
+          </div>
 
         </div>
+
+        {/* Sketchy infinite scrolling marquee ticker */}
+        <div className="w-full mt-16 pt-6 border-t-2 border-dashed border-neutral-300 dark:border-neutral-800 overflow-hidden select-none">
+          <div className="flex w-max animate-marquee">
+            {[...Array(2)].map((_, i) => (
+              <div key={i} className="flex items-center gap-6 pr-6 whitespace-nowrap font-norwester text-xl md:text-2xl uppercase tracking-[0.12em] text-neutral-400/70 dark:text-neutral-600">
+                <span>Web Engineering</span>
+                <span className="text-[#80eb34] text-base">✦</span>
+                <span>Workflow Systems</span>
+                <span className="text-[#80eb34] text-base">✦</span>
+                <span>LLM Agents</span>
+                <span className="text-[#80eb34] text-base">✦</span>
+                <span>Tailwind Systems</span>
+                <span className="text-[#80eb34] text-base">✦</span>
+                <span>React Architecture</span>
+                <span className="text-[#80eb34] text-base">✦</span>
+                <span>Bespoke Code</span>
+                <span className="text-[#80eb34] text-base">✦</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
       </main>
 
+      {/* Bento-Box Capabilities & Services Section */}
       <div className="flex w-full max-w-7xl flex-col gap-24 px-6 pb-24 md:px-12 md:pb-32">
         <motion.section
           className="flex flex-col gap-10"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-120px" }}
+          viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
         >
-          <div className="flex flex-col justify-between gap-3 border-b-2 border-black pb-5 dark:border-white sm:flex-row sm:items-end">
-            <h2 className="font-norwester text-2xl uppercase tracking-[0.12em] text-black dark:text-white md:text-3xl">What I Do</h2>
-            <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-neutral-500">Capabilities</span>
+          {/* Section Header */}
+          <div className="flex flex-col justify-between gap-3 border-b-2 border-neutral-950 pb-5 dark:border-white sm:flex-row sm:items-end">
+            <div>
+              <span className="font-mono text-xs uppercase tracking-[0.25em] text-[#5cba1d] dark:text-[#80eb34] font-bold">
+                [ 01 // CAPABILITIES ]
+              </span>
+              <h2 className="font-norwester text-3xl uppercase tracking-[0.06em] text-neutral-950 dark:text-white md:text-4xl">
+                What I Engineer &amp; Deliver
+              </h2>
+            </div>
+            <p className="font-balgin text-sm text-neutral-600 dark:text-neutral-400 max-w-sm">
+              End-to-end technical execution across modern web engineering, workflow orchestration, and bespoke AI systems.
+            </p>
           </div>
 
-          <div className="grid gap-5 md:grid-cols-3">
-            {services.map((service) => (
-              <motion.div
-                key={service.id}
-                className="group relative overflow-hidden rounded-[1.5rem] border border-black/5 bg-white/50 p-6 shadow-[0_16px_40px_rgba(17,17,17,0.04)] transition-all duration-300 hover:-translate-y-2 hover:border-[#80eb34]/60 hover:bg-[#80eb34]/10 hover:shadow-[0_22px_45px_rgba(128,235,52,0.12)] dark:border-white/10 dark:bg-white/5 dark:hover:border-[#80eb34]/40"
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                initial={{ opacity: 0, y: 20 }}
-                transition={{ duration: 0.5, delay: Number(service.id) * 0.05 }}
-              >
-                <span className="absolute right-5 top-5 font-mono text-[10px] text-neutral-400 transition-colors group-hover:text-[#5cba1d] dark:group-hover:text-[#80eb34]">/ / /</span>
-                <span className="font-norwester text-xs uppercase tracking-[0.28em] text-[#80eb34]">{service.id}</span>
-                <h3 className="mt-5 font-norwester text-2xl uppercase tracking-[0.08em] text-black dark:text-white">{service.title}</h3>
-                <p className="mt-4 font-balgin text-base leading-relaxed text-neutral-600 dark:text-neutral-300">{service.description}</p>
-              </motion.div>
-            ))}
+          {/* Silicon Valley Bento Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            {services.map((service, index) => {
+              const Icon = service.icon;
+              return (
+                <motion.div
+                  key={service.id}
+                  className={`bento-card group relative flex flex-col justify-between overflow-hidden p-8 transition-all duration-300 ${
+                    service.highlight
+                      ? "text-neutral-950 dark:text-white"
+                      : "text-neutral-900 dark:text-white"
+                  } ${service.colSpan} hover:border-[#80eb34]/80 dark:hover:border-[#80eb34]/60`}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.08 }}
+                >
+                  <div className="pointer-events-none absolute right-8 top-8 h-5 w-12 rotate-[-4deg] border-t-2 border-dashed border-[#80eb34]/60 transition-all duration-300 group-hover:w-16" />
+
+                  {/* Top Bar */}
+                  <div className="flex items-start justify-between gap-4">
+                    <div className="flex h-11 w-11 items-center justify-center rounded-[0.55rem_0.75rem_0.45rem_0.65rem] bg-neutral-100/80 dark:bg-white/5 border border-neutral-300/70 dark:border-neutral-800 text-neutral-900 dark:text-neutral-100 group-hover:text-[#5cba1d] dark:group-hover:text-[#80eb34] group-hover:border-[#80eb34]/40 transition-colors">
+                      <Icon className="h-5 w-5" />
+                    </div>
+                    <span className="font-mono text-xs uppercase tracking-[0.2em] text-neutral-400 group-hover:text-[#5cba1d] dark:group-hover:text-[#80eb34] transition-colors">
+                      {service.id}
+                    </span>
+                  </div>
+
+                  {/* Body Content */}
+                  <div className="mt-8">
+                    <span className="font-mono text-[11px] uppercase tracking-wider text-[#5cba1d] dark:text-[#80eb34] font-semibold">
+                      {service.tagline}
+                    </span>
+                    <h3 className="mt-1 font-norwester text-2xl uppercase tracking-wide text-neutral-950 dark:text-white">
+                      {service.title}
+                    </h3>
+                    <p className="mt-3 font-balgin text-sm leading-relaxed text-neutral-600 dark:text-neutral-400">
+                      {service.description}
+                    </p>
+                  </div>
+
+                  {/* Tag Pills */}
+                  <div className="mt-6 flex flex-wrap gap-1.5 pt-4 border-t border-neutral-100 dark:border-neutral-800/80">
+                    {service.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="rounded-md bg-neutral-100 px-2 py-0.5 font-mono text-[10px] text-neutral-600 dark:bg-white/5 dark:text-neutral-400"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </motion.div>
+              );
+            })}
           </div>
         </motion.section>
 
+        {/* Engagement Models: High Contrast Studio Cards */}
         <motion.section
           className="flex flex-col gap-10"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-120px" }}
+          viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
         >
-          <div className="flex flex-col justify-between gap-3 border-b-2 border-black pb-5 dark:border-white sm:flex-row sm:items-end">
-            <h2 className="font-norwester text-2xl uppercase tracking-[0.12em] text-black dark:text-white md:text-3xl">How I Work</h2>
-            <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-neutral-500">Engagement</span>
+          <div className="flex flex-col justify-between gap-3 border-b-2 border-neutral-950 pb-5 dark:border-white sm:flex-row sm:items-end">
+            <div>
+              <span className="font-mono text-xs uppercase tracking-[0.25em] text-[#5cba1d] dark:text-[#80eb34] font-bold">
+                [ 02 // COLLABORATION ]
+              </span>
+              <h2 className="font-norwester text-3xl uppercase tracking-[0.06em] text-neutral-950 dark:text-white md:text-4xl">
+                How We Can Work Together
+              </h2>
+            </div>
+            <span className="font-mono text-xs uppercase tracking-widest text-neutral-400">Flexible Delivery</span>
           </div>
 
-          <div className="grid gap-8 md:grid-cols-2">
-            <div className="rounded-[2rem] border border-black/5 bg-white/50 p-6 dark:border-white/10 dark:bg-white/5">
-              <h3 className="font-norwester text-xl uppercase tracking-[0.08em] text-black dark:text-white">Freelance Projects</h3>
-              <p className="mt-4 font-balgin text-base leading-relaxed text-neutral-600 dark:text-neutral-300">
-                End-to-end ownership of a defined scope. You bring the idea; I handle the planning, build, and delivery. Ideal for new products, MVPs, landing pages, automation systems, or one-time builds.
+          <div className="grid gap-6 md:grid-cols-2">
+            <div className="group rounded-[2rem] border border-neutral-300/80 bg-white/70 p-8 shadow-sm transition-all duration-300 hover:border-black dark:border-neutral-800 dark:bg-neutral-900/40 dark:hover:border-neutral-600">
+              <div className="flex items-center justify-between">
+                <span className="rounded-full bg-[#80eb34]/20 px-3 py-1 font-mono text-xs uppercase font-bold text-[#5cba1d] dark:text-[#80eb34]">
+                  Fixed Scope
+                </span>
+                <span className="font-mono text-xs text-neutral-400">[01]</span>
+              </div>
+              <h3 className="mt-5 font-norwester text-2xl uppercase tracking-wide text-neutral-950 dark:text-white">
+                Freelance &amp; Sprint Builds
+              </h3>
+              <p className="mt-3 font-balgin text-base leading-relaxed text-neutral-600 dark:text-neutral-400">
+                End-to-end execution with clear milestones. You supply the objectives; I shape the plan, build the solution, test, and ship it. Ideal for MVPs, customer portals, and workflow pipelines.
               </p>
             </div>
-            <div className="rounded-[2rem] border border-black/5 bg-white/50 p-6 dark:border-white/10 dark:bg-white/5">
-              <h3 className="font-norwester text-xl uppercase tracking-[0.08em] text-black dark:text-white">Contract Engagements</h3>
-              <p className="mt-4 font-balgin text-base leading-relaxed text-neutral-600 dark:text-neutral-300">
-                Embedded with your team for a defined period. Ideal for ongoing development, technical support, or when you need consistent capacity without a full-time hire.
+
+            <div className="group rounded-[2rem] border border-neutral-300/80 bg-white/70 p-8 shadow-sm transition-all duration-300 hover:border-black dark:border-neutral-800 dark:bg-neutral-900/40 dark:hover:border-neutral-600">
+              <div className="flex items-center justify-between">
+                <span className="rounded-full bg-neutral-200 dark:bg-white/10 px-3 py-1 font-mono text-xs uppercase font-bold text-neutral-800 dark:text-neutral-200">
+                  Dedicated Retainer
+                </span>
+                <span className="font-mono text-xs text-neutral-400">[02]</span>
+              </div>
+              <h3 className="mt-5 font-norwester text-2xl uppercase tracking-wide text-neutral-950 dark:text-white">
+                Contract &amp; Team Embedding
+              </h3>
+              <p className="mt-3 font-balgin text-base leading-relaxed text-neutral-600 dark:text-neutral-400">
+                Direct integration into your engineering sprints or product team for continuous feature rollout, automated system maintenance, and dedicated technical velocity without recruitment friction.
               </p>
             </div>
           </div>
         </motion.section>
 
+        {/* High-Impact Studio CTA Banner */}
         <motion.section
-          className="flex flex-col items-start justify-between gap-8 rounded-[2rem] bg-[#80eb34] px-8 py-10 md:flex-row md:items-center md:px-12"
+          className="relative overflow-hidden flex flex-col items-start justify-between gap-8 rounded-[2.5rem] bg-neutral-950 px-8 py-12 text-white md:flex-row md:items-center md:px-14 md:py-16 shadow-2xl border border-neutral-800"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-120px" }}
+          viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
         >
-          <div>
-            <h2 className="font-norwester text-2xl uppercase tracking-[0.08em] text-black md:text-3xl">Have a project in mind?</h2>
-            <p className="mt-2 font-balgin text-base text-black/75">Tell me what you are building. I will get back within 1-2 business days.</p>
+          {/* Subtle Electric Accent Glow in Corner */}
+          <div className="pointer-events-none absolute -right-20 -bottom-20 h-64 w-64 rounded-full bg-[#80eb34]/25 blur-3xl" />
+
+          <div className="relative z-10 max-w-xl">
+            <span className="font-mono text-xs uppercase tracking-widest text-[#80eb34] font-semibold">
+              Ready to Accelerate?
+            </span>
+            <h2 className="mt-2 font-norwester text-3xl uppercase tracking-tight text-white md:text-5xl">
+              Let&apos;s build something exceptional.
+            </h2>
+            <p className="mt-3 font-balgin text-base text-neutral-300">
+              Have an upcoming product, automation roadblock, or AI initiative? Reach out to start the conversation.
+            </p>
           </div>
 
-          <Link
-            href="/contact"
-            className="inline-flex items-center justify-center rounded-2xl bg-black px-7 py-4 font-norwester text-lg uppercase tracking-[0.18em] text-white transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(0,0,0,0.18)]"
-          >
-            Start a project
-          </Link>
+          <div className="relative z-10 flex shrink-0">
+            <Link
+              href="/contact"
+              className="group inline-flex items-center gap-3 rounded-2xl bg-[#80eb34] px-8 py-4 font-norwester text-base uppercase tracking-[0.16em] text-neutral-950 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(128,235,52,0.35)]"
+            >
+              <span>Initiate Project</span>
+              <ArrowUpRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </Link>
+          </div>
         </motion.section>
+
       </div>
     </div>
   );

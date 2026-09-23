@@ -68,6 +68,11 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Navbar />
+          <div className="theme-figures" aria-hidden="true">
+            <span className="theme-figure theme-figure-left" />
+            <span className="theme-figure theme-figure-center" />
+            <span className="theme-figure theme-figure-right" />
+          </div>
           {children}
           <Footer />
         </ThemeProvider>

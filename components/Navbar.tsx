@@ -83,13 +83,13 @@ export function Navbar() {
 
   return (
     <>
-      <header className="absolute top-0 left-0 right-0 z-50 flex justify-center w-full pt-5 pb-3 border-b border-neutral-200/50 dark:border-neutral-800/50 bg-background/50 backdrop-blur-sm">
-        <nav className="flex items-center justify-between w-full max-w-7xl px-6 md:px-12">
+      <header className="absolute top-0 left-0 right-0 z-50 flex justify-center w-full px-4 pt-4 pb-3 md:px-6 border-b-2 border-dashed border-neutral-300/70 dark:border-neutral-800/70 bg-background/60 backdrop-blur-sm">
+        <nav className="flex items-center justify-between w-full max-w-7xl px-2 md:px-6">
           
           {/* Logo */}
-          <Link 
+          <Link
             href="/" 
-            className="flex flex-col text-xl md:text-2xl font-black leading-none tracking-tighter uppercase text-black dark:text-white z-50"
+            className="group relative flex flex-col text-xl md:text-2xl font-black leading-none tracking-tighter uppercase text-black dark:text-white z-50"
             onClick={() => setMobileMenuOpen(false)}
           >
             <span>ABDULLAH</span>
@@ -102,7 +102,7 @@ export function Navbar() {
           <div className="flex items-center gap-3">
             
             {/* Desktop Links */}
-            <div className="hidden md:flex items-center gap-5 lg:gap-7 mr-3">
+            <div className="hidden md:flex items-center gap-1 px-2 py-1 mr-3 bg-background/35">
               {navLinks.map((link) => {
                 const isServices = link.name === "SERVICES";
                 const isActive = pathname === link.href || (isServices && pathname.startsWith("/services"));
@@ -115,7 +115,7 @@ export function Navbar() {
                     >
                       <Link
                         href={link.href}
-                          className={`relative flex items-center gap-1.5 font-norwester text-sm lg:text-base uppercase tracking-wide transition-colors ${
+                          className={`relative flex items-center gap-1.5 px-3 py-2 font-norwester text-sm lg:text-base uppercase tracking-wide transition-colors ${
                           isActive
                             ? "text-[#5cba1d] dark:text-[#80eb34]"
                             : "text-black hover:text-[#80eb34] dark:text-white dark:hover:text-[#80eb34]"
@@ -154,7 +154,7 @@ export function Navbar() {
                                   className="group/link flex flex-col"
                                 >
                                   <span className="font-norwester text-base tracking-wide text-neutral-900 dark:text-neutral-100 group-hover/link:text-[#5cba1d] dark:group-hover/link:text-[#80eb34] transition-colors">
-                                    Full Stack Development
+                                    Custom Web Development
                                   </span>
                                   <span className="font-balgin text-xs text-neutral-500 dark:text-neutral-400">
                                     End-to-end web apps, custom platforms & APIs
@@ -181,7 +181,7 @@ export function Navbar() {
                                     Migration & Modernization
                                   </span>
                                   <span className="font-balgin text-xs text-neutral-500 dark:text-neutral-400">
-                                    Upgrading legacy codebases to modern Next.js stacks
+                                    Upgrading legacy codebases into maintainable digital products
                                   </span>
                                 </Link>
                               </div>
@@ -249,7 +249,7 @@ export function Navbar() {
                   <Link 
                     key={link.name} 
                     href={link.href}
-                    className={`relative group font-norwester text-sm lg:text-base uppercase tracking-wide transition-colors ${
+                    className={`relative group px-3 py-2 font-norwester text-sm lg:text-base uppercase tracking-wide transition-colors ${
                       isActive 
                         ? "text-[#5cba1d] dark:text-[#80eb34]" 
                         : "text-black hover:text-[#80eb34] dark:text-white dark:hover:text-[#80eb34]"
@@ -268,7 +268,7 @@ export function Navbar() {
             <div className="relative">
               <button
                 onClick={toggleTheme}
-                className="relative flex h-9 w-9 items-center justify-center rounded-xl border border-black/20 bg-transparent text-black transition-all hover:border-black/50 hover:bg-black/5 active:scale-95 dark:border-white/20 dark:text-white dark:hover:border-white/50 dark:hover:bg-white/5 md:h-10 md:w-10 cursor-pointer"
+                className="sketch-dash relative flex h-10 w-10 items-center justify-center border-black/20 bg-transparent text-black transition-all hover:border-[#2d9ca3] hover:bg-[#2d9ca3]/10 active:scale-95 dark:border-white/20 dark:text-white dark:hover:border-[#2d9ca3] dark:hover:bg-[#2d9ca3]/10 md:h-11 md:w-11 cursor-pointer"
                 aria-label="Toggle theme"
               >
                 {mounted ? (
@@ -295,7 +295,7 @@ export function Navbar() {
               <div className="absolute inset-0 bg-[#80eb34] rounded-xl translate-x-[3px] translate-y-[3px]" />
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="relative w-10 h-10 flex items-center justify-center bg-black dark:bg-white text-white dark:text-black rounded-xl hover:-translate-y-[1px] hover:-translate-x-[1px] active:translate-y-[2px] active:translate-x-[2px] transition-all cursor-pointer z-50"
+                className="relative w-10 h-10 flex items-center justify-center bg-black dark:bg-white text-white dark:text-black hover:-translate-y-[1px] hover:-translate-x-[1px] active:translate-y-[2px] active:translate-x-[2px] transition-all cursor-pointer z-50"
                 aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
                 aria-expanded={mobileMenuOpen}
               >
@@ -371,7 +371,7 @@ export function Navbar() {
                             className="font-norwester text-base tracking-wide text-neutral-700 dark:text-neutral-300 hover:text-[#5cba1d] dark:hover:text-[#80eb34] transition-colors flex items-center gap-2 pl-2"
                           >
                             <span className="w-1.5 h-1.5 rounded-full bg-[#80eb34]" />
-                            Full Stack Development
+                            Custom Web Development
                           </Link>
                           <Link
                             href="/services#ui-enhancement"

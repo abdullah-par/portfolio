@@ -14,13 +14,13 @@ const fadeUp: Variants = {
 
 export default function Work() {
   return (
-    <div className="flex flex-col flex-1 items-center bg-background font-sans transition-colors duration-500 overflow-hidden min-h-screen pt-36 md:pt-44 pb-24">
+    <div className="page-shell flex flex-col flex-1 items-center bg-background font-sans transition-colors duration-500 overflow-hidden min-h-screen pt-36 md:pt-44 pb-24">
       <main className="flex flex-1 w-full max-w-7xl flex-col px-6 md:px-12 gap-24 md:gap-32">
 
         {/* Hero */}
         <div className="flex flex-col gap-8">
           <motion.div className="flex flex-col gap-2" variants={fadeUp} custom={0} initial="hidden" animate="show">
-            <span className="font-mono text-xs uppercase tracking-widest text-[#80eb34] font-bold">Work</span>
+            <span className="page-kicker">Work / Selected Builds</span>
             <h1 className="font-norwester text-[3.5rem] sm:text-[5rem] md:text-[6rem] lg:text-[7rem] leading-[0.92] tracking-tighter text-black dark:text-white uppercase">
               Selected <span className="text-[#80eb34]">Projects.</span>
             </h1>
@@ -33,7 +33,7 @@ export default function Work() {
 
         {/* Coming Soon Block */}
         <motion.div 
-          className="flex flex-col items-center justify-center text-center py-20 px-6 border-2 border-dashed border-neutral-300 dark:border-neutral-800 rounded-3xl"
+          className="sketch-dash relative flex flex-col items-center justify-center text-center py-20 px-6 border-neutral-300 dark:border-neutral-800 bg-white/30 dark:bg-white/[0.02]"
           variants={fadeUp} 
           custom={2} 
           initial="hidden" 
@@ -49,12 +49,12 @@ export default function Work() {
         </motion.div>
 
         {/* CTA Strip */}
-        <motion.section className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-8 py-12 px-10 md:px-14 bg-[#80eb34] rounded-[2rem] md:rounded-[3rem]" variants={fadeUp} custom={3} initial="hidden" animate="show">
+        <motion.section className="sketch-panel flex flex-col sm:flex-row items-start sm:items-center justify-between gap-8 py-12 px-10 md:px-14 bg-[#80eb34]" variants={fadeUp} custom={3} initial="hidden" animate="show">
           <div className="flex flex-col gap-2">
             <h2 className="font-norwester text-2xl md:text-3xl uppercase tracking-wide text-black">Need something similar?</h2>
             <p className="font-balgin text-base text-black/70">Let me know what you are building.</p>
           </div>
-          <Link href="/contact" className="shrink-0 inline-flex items-center gap-2 bg-black text-white font-norwester text-lg uppercase tracking-widest px-8 py-4 rounded-2xl hover:-translate-y-1 hover:shadow-xl active:translate-y-0 transition-all duration-300">
+          <Link href="/contact" className="sketch-button shrink-0 inline-flex items-center gap-2 bg-black text-white font-norwester text-lg uppercase tracking-widest px-8 py-4 hover:-translate-y-1 hover:shadow-xl active:translate-y-0 transition-all duration-300">
             Start a Project &rarr;
           </Link>
         </motion.section>

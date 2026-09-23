@@ -3,6 +3,7 @@
 import { motion, type Variants } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 24 },
@@ -15,185 +16,75 @@ const fadeUp: Variants = {
 
 export default function About() {
   return (
-    <div className="flex flex-col flex-1 items-center bg-background font-sans transition-colors duration-500 overflow-hidden min-h-screen pt-36 md:pt-44 pb-24">
-      <main className="flex flex-1 w-full max-w-7xl flex-col px-6 md:px-12 gap-20 md:gap-28">
-
-        {/* Top Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-          
-          {/* Left Column */}
-          <div className="lg:col-span-7 flex flex-col gap-10">
-            
-            {/* Title & Tag */}
-            <motion.div className="flex flex-col gap-3" variants={fadeUp} custom={0} initial="hidden" animate="show">
-              <span className="font-mono text-xs uppercase tracking-widest text-[#5cba1d] dark:text-[#80eb34] font-bold">
-                ABOUT
-              </span>
-              <h1 className="font-norwester text-[3.5rem] sm:text-[4.5rem] md:text-[5.5rem] lg:text-[6.5rem] leading-[0.92] tracking-tighter text-black dark:text-white uppercase">
-                ABDULLAH<br />
-                <span className="text-[#80eb34]">PARVEZ.</span>
+    <div className="page-shell flex flex-col flex-1 items-center bg-background font-sans transition-colors duration-500 overflow-hidden min-h-screen pt-36 md:pt-44 pb-24">
+      <main className="flex flex-1 w-full max-w-7xl flex-col px-6 md:px-12 gap-24 md:gap-32">
+        <div className="grid grid-cols-1 items-start gap-14 lg:grid-cols-12 lg:gap-20">
+          <div className="flex flex-col gap-10 lg:col-span-7">
+            <motion.div className="flex flex-col gap-5" variants={fadeUp} custom={0} initial="hidden" animate="show">
+              <span className="page-kicker">ABOUT THE BUILDER</span>
+              <h1 className="font-norwester text-[3.5rem] uppercase leading-[0.86] tracking-tighter text-black dark:text-white sm:text-[5rem] md:text-[6.5rem]">
+                ABDULLAH<br /><span className="text-[#80eb34]">PARVEZ.</span>
               </h1>
-            </motion.div>
-
-            {/* Brand Dot Status */}
-            <motion.div 
-              className="flex items-center gap-3 font-mono text-xs sm:text-sm font-bold tracking-widest uppercase text-black dark:text-white"
-              variants={fadeUp} 
-              custom={1} 
-              initial="hidden" 
-              animate="show"
-            >
-              <span className="relative flex h-2.5 w-2.5 shrink-0">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#80eb34] opacity-75" />
-                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#80eb34]" />
-              </span>
-              <span>AVAILABLE FOR FREELANCE & CONTRACT PROJECTS</span>
-            </motion.div>
-
-            {/* Core Philosophy */}
-            <motion.div 
-              className="flex flex-col gap-6 border-t border-neutral-200 dark:border-neutral-800 pt-8" 
-              variants={fadeUp} 
-              custom={2} 
-              initial="hidden" 
-              animate="show"
-            >
-              <h2 className="font-norwester text-2xl sm:text-3xl md:text-4xl uppercase tracking-tight text-black dark:text-white">
-                I BUILD SYSTEMS, NOT JUST SOFTWARE.
-              </h2>
-
-              <div className="flex flex-col gap-4 font-balgin text-lg md:text-xl leading-relaxed text-neutral-700 dark:text-neutral-300">
-                <p>
-                  I&apos;m Abdullah a software engineer interested in the space where web development, automation and AI meet.
-                </p>
-                <p>
-                  I like taking messy ideas, repetitive processes and manual workflows and turning them into simple systems that actually work.
-                </p>
-                <p>
-                  Whether it&apos;s a web application, an internal tool or an automated workflow, I care about the same thing: <span className="text-black dark:text-white font-semibold">make the work simpler.</span>
-                </p>
-              </div>
-            </motion.div>
-
-            {/* Signature Statement Block */}
-            <motion.div
-              className="relative p-6 sm:p-8 rounded-3xl bg-neutral-100 dark:bg-neutral-900/70 border border-neutral-200 dark:border-neutral-800 flex flex-col gap-5 overflow-hidden"
-              variants={fadeUp}
-              custom={3}
-              initial="hidden"
-              animate="show"
-            >
-              <span className="font-mono text-xs uppercase tracking-widest text-[#5cba1d] dark:text-[#80eb34] font-bold">
-                THE QUESTION I KEEP ASKING:
-              </span>
-              <p className="font-norwester text-2xl sm:text-3xl md:text-4xl uppercase tracking-tight text-black dark:text-white leading-tight">
-                WHERE IS THE MOST MANUAL EFFORT BEING WASTED?
-              </p>
-              <div className="flex items-center gap-3 text-neutral-400 font-mono text-xl">
-                <span>↓</span>
-              </div>
-              <p className="font-norwester text-xl sm:text-2xl uppercase tracking-wide text-[#5cba1d] dark:text-[#80eb34]">
-                THAT&apos;S WHERE I START BUILDING.
+              <p className="max-w-xl border-l-2 border-[#80eb34] pl-5 font-balgin text-xl leading-relaxed text-neutral-700 dark:text-neutral-300 md:text-2xl">
+                I turn messy ideas and repetitive work into clear digital experiences and systems people can actually use.
               </p>
             </motion.div>
 
+            <motion.div className="sketch-rule flex flex-col gap-5 border-neutral-300 pt-8 dark:border-neutral-800" variants={fadeUp} custom={1} initial="hidden" animate="show">
+              <span className="font-mono text-xs font-bold uppercase tracking-[0.2em] text-[#5cba1d] dark:text-[#80eb34]">A LITTLE MORE ABOUT ME</span>
+              <div className="flex flex-col gap-4 font-balgin text-lg leading-relaxed text-neutral-700 dark:text-neutral-300 md:text-xl">
+                <p>I work where web experiences, automation, and AI meet. I enjoy finding the confusing, manual parts of a process and making them feel simple.</p>
+                <p>My goal is not to add more software. It is to build something useful, considered, and easy to live with.</p>
+              </div>
+            </motion.div>
+
+            <motion.div className="flex items-center gap-3 font-mono text-xs font-bold uppercase tracking-widest text-black dark:text-white" variants={fadeUp} custom={2} initial="hidden" animate="show">
+              <span className="h-2.5 w-2.5 rounded-full bg-[#80eb34] shadow-[0_0_0_4px_rgba(128,235,52,0.18)]" />
+              Available for freelance and contract projects
+            </motion.div>
           </div>
 
-          {/* Right Column: Image & Details Panel */}
-          <motion.div 
-            className="lg:col-span-5 flex flex-col gap-8 lg:sticky lg:top-36"
-            variants={fadeUp} 
-            custom={3} 
-            initial="hidden" 
-            animate="show"
-          >
-            {/* Human element: Profile Image card */}
-            <div className="relative w-full aspect-[4/3] sm:aspect-[16/11] rounded-3xl overflow-hidden border border-neutral-200 dark:border-neutral-800 shadow-xl bg-neutral-900">
-              <Image
-                src="/logo/profile.webp"
-                alt="Abdullah Parvez"
-                fill
-                priority
-                sizes="(max-width: 768px) 100vw, 450px"
-                className="object-cover"
-                quality={95}
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-              <div className="absolute bottom-4 left-5 right-5 flex justify-between items-end text-white">
-                <span className="font-norwester text-lg tracking-wide uppercase">Abdullah Parvez</span>
-                <span className="font-mono text-xs text-[#80eb34] tracking-widest uppercase">Engineer · Builder</span>
+          <motion.div className="relative flex flex-col gap-6 lg:col-span-5 lg:pt-10" variants={fadeUp} custom={2} initial="hidden" animate="show">
+            <div className="pointer-events-none absolute -inset-5 -z-10 rounded-[50%] border-2 border-dashed border-[#80eb34]/60 rotate-[-4deg]" />
+            <div className="sketch-panel relative aspect-[4/5] w-full overflow-hidden bg-neutral-900">
+              <Image src="/logo/profile.webp" alt="Abdullah Parvez" fill priority sizes="(max-width: 768px) 100vw, 450px" className="object-cover object-[center_14%]" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+              <div className="absolute bottom-5 left-5 right-5 flex items-end justify-between gap-4 text-white">
+                <span className="font-norwester text-xl uppercase tracking-wide">Abdullah Parvez</span>
+                <span className="font-mono text-[10px] uppercase tracking-widest text-[#80eb34]">Web · Systems · AI</span>
               </div>
             </div>
-
-            {/* Information Panel */}
-            <div className="flex flex-col divide-y divide-neutral-200 dark:divide-neutral-800 border-t border-b border-neutral-200 dark:border-neutral-800">
-              
-              <div className="flex justify-between items-start py-4 gap-4">
-                <span className="font-norwester text-xs sm:text-sm tracking-widest uppercase text-neutral-400 dark:text-neutral-500 shrink-0">
-                  AVAILABLE FOR
-                </span>
-                <div className="font-mono text-sm sm:text-base text-right text-black dark:text-white flex flex-col">
-                  <span>Freelance projects</span>
-                  <span>Contract work</span>
-                </div>
-              </div>
-
-              <div className="flex justify-between items-start py-4 gap-4">
-                <span className="font-norwester text-xs sm:text-sm tracking-widest uppercase text-neutral-400 dark:text-neutral-500 shrink-0">
-                  CURRENTLY
-                </span>
-                <div className="font-mono text-sm sm:text-base text-right text-black dark:text-white flex flex-col">
-                  <span>Software Engineer</span>
-                  <span className="text-neutral-500 dark:text-neutral-400">HCLTech</span>
-                </div>
-              </div>
-
-              <div className="flex justify-between items-start py-4 gap-4">
-                <span className="font-norwester text-xs sm:text-sm tracking-widest uppercase text-neutral-400 dark:text-neutral-500 shrink-0">
-                  FOCUS
-                </span>
-                <div className="font-mono text-sm sm:text-base text-right text-black dark:text-white flex flex-col">
-                  <span>Web Products</span>
-                  <span>Automation</span>
-                  <span>AI Integration</span>
-                </div>
-              </div>
-
-              <div className="flex justify-between items-start py-4 gap-4">
-                <span className="font-norwester text-xs sm:text-sm tracking-widest uppercase text-neutral-400 dark:text-neutral-500 shrink-0">
-                  STACK
-                </span>
-                <div className="font-mono text-sm sm:text-base text-right text-black dark:text-white flex flex-col">
-                  <span>Next.js</span>
-                  <span>TypeScript</span>
-                  <span>Node.js</span>
-                  <span>Python</span>
-                </div>
-              </div>
-
-              <div className="flex justify-between items-baseline py-4 gap-4">
-                <span className="font-norwester text-xs sm:text-sm tracking-widest uppercase text-neutral-400 dark:text-neutral-500 shrink-0">
-                  BASED
-                </span>
-                <span className="font-mono text-sm sm:text-base text-right text-black dark:text-white">
-                  India
-                </span>
-              </div>
-
-            </div>
-
-            {/* Quick action button */}
-            <Link
-              href="/contact"
-              className="flex items-center justify-center bg-black dark:bg-white text-white dark:text-black font-norwester text-base uppercase tracking-widest py-3.5 px-6 rounded-2xl hover:-translate-y-0.5 hover:shadow-lg active:translate-y-0 transition-all duration-300"
-            >
-              Let&apos;s Talk
-            </Link>
-
+            <span className="rotate-[-3deg] self-end font-mono text-xs font-bold uppercase tracking-widest text-neutral-500">That&apos;s me →</span>
           </motion.div>
-
         </div>
 
+        <motion.section className="flex flex-col gap-8" variants={fadeUp} custom={3} initial="hidden" animate="show">
+          <div className="flex flex-col justify-between gap-4 border-b-2 border-dashed border-neutral-900 pb-5 dark:border-white sm:flex-row sm:items-end">
+            <div>
+              <span className="page-kicker">WHAT I PROVIDE</span>
+              <h2 className="mt-3 font-norwester text-3xl uppercase tracking-wide text-black dark:text-white md:text-5xl">Useful things, built well.</h2>
+            </div>
+            <p className="max-w-sm font-balgin text-sm leading-relaxed text-neutral-600 dark:text-neutral-400">Choose the problem. I&apos;ll help shape the right digital solution.</p>
+          </div>
+
+          <div className="grid gap-x-10 md:grid-cols-3">
+            {[
+              ["01", "Web Development", "Websites and digital products that feel clear, fast, and dependable."],
+              ["02", "Automation Systems", "Workflows that remove repetitive effort and keep important work moving."],
+              ["03", "AI Experiences", "Practical AI features and assistants built around real customer and team needs."],
+            ].map(([number, title, description]) => (
+              <div key={number} className="group flex flex-col gap-5 border-b-2 border-dashed border-neutral-300 py-7 dark:border-neutral-800 md:border-b-0 md:border-r md:px-6 md:first:pl-0 md:last:border-r-0">
+                <span className="font-mono text-xs font-bold tracking-[0.2em] text-[#5cba1d] dark:text-[#80eb34]">[{number}]</span>
+                <h3 className="font-norwester text-2xl uppercase tracking-wide text-black transition-colors group-hover:text-[#5cba1d] dark:text-white dark:group-hover:text-[#80eb34]">{title}</h3>
+                <p className="font-balgin leading-relaxed text-neutral-600 dark:text-neutral-400">{description}</p>
+              </div>
+            ))}
+          </div>
+
+          <Link href="/contact" className="sketch-button group inline-flex w-fit items-center gap-3 bg-black px-7 py-4 font-norwester text-base uppercase tracking-widest text-white dark:bg-white dark:text-black">
+            Start a conversation <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-1 group-hover:translate-x-1" />
+          </Link>
+        </motion.section>
       </main>
     </div>
   );

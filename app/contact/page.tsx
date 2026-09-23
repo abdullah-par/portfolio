@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, type Variants } from "framer-motion";
 import { socialLinks } from "@/components/Footer";
 
@@ -12,6 +12,84 @@ const fadeUp: Variants = {
     transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as const, delay: i * 0.1 },
   }),
 };
+
+type SelectOption = { value: string; label: string };
+
+function SketchSelect({
+  value,
+  onChange,
+  placeholder,
+  options,
+}: {
+  value: string;
+  onChange: (value: string) => void;
+  placeholder: string;
+  options: SelectOption[];
+}) {
+  const [open, setOpen] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const selectedOption = options.find((option) => option.value === value);
+
+  useEffect(() => {
+    const handlePointerDown = (event: PointerEvent) => {
+      if (!containerRef.current?.contains(event.target as Node)) {
+        setOpen(false);
+      }
+    };
+
+    document.addEventListener("pointerdown", handlePointerDown);
+    return () => document.removeEventListener("pointerdown", handlePointerDown);
+  }, []);
+
+  return (
+    <div ref={containerRef} className="relative">
+      <button
+        type="button"
+        aria-haspopup="listbox"
+        aria-expanded={open}
+        onClick={() => setOpen((isOpen) => !isOpen)}
+        className={`sketch-select-trigger ${open ? "sketch-select-trigger-open" : ""}`}
+      >
+        <span className={selectedOption ? "text-black dark:text-white" : "text-neutral-400"}>
+          {selectedOption?.label ?? placeholder}
+        </span>
+        <span className={`sketch-select-arrow ${open ? "rotate-180" : ""}`}>↓</span>
+      </button>
+
+      {open && (
+        <div className="sketch-select-menu" role="listbox">
+          <button
+            type="button"
+            role="option"
+            aria-selected={!value}
+            onClick={() => {
+              onChange("");
+              setOpen(false);
+            }}
+            className={`sketch-select-option ${!value ? "sketch-select-option-active" : ""}`}
+          >
+            {placeholder}
+          </button>
+          {options.map((option) => (
+            <button
+              type="button"
+              role="option"
+              aria-selected={value === option.value}
+              key={option.value}
+              onClick={() => {
+                onChange(option.value);
+                setOpen(false);
+              }}
+              className={`sketch-select-option ${value === option.value ? "sketch-select-option-active" : ""}`}
+            >
+              {option.label}
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
 
 export default function Contact() {
   const [selectedService, setSelectedService] = useState<string | null>(null);
@@ -106,19 +184,29 @@ export default function Contact() {
   };
 
   return (
-    <div className="flex flex-col flex-1 items-center bg-background font-sans transition-colors duration-500 overflow-hidden min-h-screen pt-36 md:pt-44 pb-24">
+    <div className="page-shell flex flex-col flex-1 items-center bg-background font-sans transition-colors duration-500 overflow-hidden min-h-screen pt-36 md:pt-44 pb-24">
       <main className="flex flex-1 w-full max-w-7xl flex-col px-6 md:px-12 transition-colors duration-500 gap-24 md:gap-32">
         
         {/* Split Editorial Layout: Left Anchor & Right Form */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-20 items-start">
+        <div className="grid grid-cols-1 items-start gap-14 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
           
           {/* Left Column — Visual Anchor (Huge Editorial Typography) */}
-          <div className="lg:col-span-6 flex flex-col items-start gap-8 lg:sticky lg:top-36">
-            
-            <motion.h1
-              className="font-norwester text-[3.5rem] sm:text-[5rem] md:text-[6rem] lg:text-[6.75rem] leading-[0.95] tracking-tighter text-black dark:text-white uppercase"
+          <div className="flex flex-col items-start gap-8 lg:sticky lg:top-36">
+
+            <motion.span
+              className="page-kicker"
               variants={fadeUp}
               custom={0}
+              initial="hidden"
+              animate="show"
+            >
+              Start a conversation
+            </motion.span>
+            
+            <motion.h1
+              className="font-norwester text-[3.5rem] uppercase leading-[0.88] tracking-tighter text-black dark:text-white sm:text-[5rem] md:text-[6rem] lg:text-[6.4rem]"
+              variants={fadeUp}
+              custom={1}
               initial="hidden"
               animate="show"
             >
@@ -131,7 +219,7 @@ export default function Contact() {
             <motion.p
               className="font-balgin text-lg sm:text-xl md:text-[1.35rem] leading-relaxed text-neutral-700 dark:text-neutral-300 max-w-lg mt-2"
               variants={fadeUp}
-              custom={1}
+              custom={2}
               initial="hidden"
               animate="show"
             >
@@ -140,9 +228,9 @@ export default function Contact() {
 
             {/* Availability indicator */}
             <motion.div
-              className="flex items-center gap-3 text-xs sm:text-sm font-mono font-bold tracking-widest uppercase text-black dark:text-white mt-1"
+              className="sketch-dash flex items-center gap-3 px-4 py-2 text-xs sm:text-sm font-mono font-bold tracking-widest uppercase text-black dark:text-white mt-1"
               variants={fadeUp}
-              custom={2}
+              custom={3}
               initial="hidden"
               animate="show"
             >
@@ -157,7 +245,7 @@ export default function Contact() {
             <motion.div
               className="flex flex-col gap-8 pt-8 mt-4 border-t border-neutral-200 dark:border-neutral-800 w-full"
               variants={fadeUp}
-              custom={3}
+              custom={4}
               initial="hidden"
               animate="show"
             >
@@ -204,18 +292,18 @@ export default function Contact() {
 
           {/* Right Column — Editorial Line-Based Form */}
           <motion.div
-            className="lg:col-span-6 flex flex-col w-full"
+            className="sketch-form-panel flex w-full flex-col p-6 sm:p-9"
             variants={fadeUp}
             custom={2}
             initial="hidden"
             animate="show"
           >
-            <div className="flex items-center justify-between pb-4 border-b-2 border-black dark:border-white mb-10">
+            <div className="mb-10 flex items-end justify-between border-b-2 border-dashed border-black pb-4 dark:border-white">
               <h2 className="font-norwester text-2xl md:text-3xl tracking-wider text-black dark:text-white uppercase">
                 Start a Project
               </h2>
-              <span className="font-mono text-xs uppercase tracking-widest text-neutral-400">
-                Enquiry
+              <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-[#5cba1d] dark:text-[#80eb34]">
+                01 / Enquiry
               </span>
             </div>
 
@@ -258,7 +346,7 @@ export default function Contact() {
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="Jane Doe"
-                  className="w-full pb-3 pt-1 bg-transparent border-b border-neutral-300 dark:border-neutral-800 text-black dark:text-white placeholder:text-neutral-400/50 font-mono text-base sm:text-lg focus:outline-none focus:border-[#80eb34] transition-colors rounded-none"
+                    className="w-full pb-3 pt-1 bg-transparent border-b-2 border-dashed border-neutral-300 dark:border-neutral-800 text-black dark:text-white placeholder:text-neutral-400/50 font-mono text-base sm:text-lg focus:outline-none focus:border-[#80eb34] transition-colors rounded-none"
                 />
               </div>
 
@@ -273,7 +361,7 @@ export default function Contact() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="jane@company.com"
-                  className="w-full pb-3 pt-1 bg-transparent border-b border-neutral-300 dark:border-neutral-800 text-black dark:text-white placeholder:text-neutral-400/50 font-mono text-base sm:text-lg focus:outline-none focus:border-[#80eb34] transition-colors rounded-none"
+                    className="w-full pb-3 pt-1 bg-transparent border-b-2 border-dashed border-neutral-300 dark:border-neutral-800 text-black dark:text-white placeholder:text-neutral-400/50 font-mono text-base sm:text-lg focus:outline-none focus:border-[#80eb34] transition-colors rounded-none"
                 />
               </div>
 
@@ -290,7 +378,7 @@ export default function Contact() {
                         key={s.id}
                         type="button"
                         onClick={() => setSelectedService(isSelected ? null : s.id)}
-                        className={`py-3 px-3 text-center border font-mono text-xs tracking-wider uppercase transition-all duration-200 rounded-lg cursor-pointer ${
+                        className={`py-3 px-3 text-center border-2 border-dashed font-mono text-xs tracking-wider uppercase transition-all duration-200 rounded-lg cursor-pointer ${
                           isSelected
                             ? "border-[#80eb34] bg-[#80eb34] text-black font-bold shadow-md shadow-[#80eb34]/25"
                             : "border-neutral-300 dark:border-neutral-800 text-neutral-700 dark:text-neutral-300 hover:border-black dark:hover:border-white bg-transparent"
@@ -314,7 +402,7 @@ export default function Contact() {
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
                   placeholder="Overview, scope, goals, or problems you're looking to solve..."
-                  className="w-full pb-3 pt-1 bg-transparent border-b border-neutral-300 dark:border-neutral-800 text-black dark:text-white placeholder:text-neutral-400/50 font-mono text-base sm:text-lg focus:outline-none focus:border-[#80eb34] transition-colors resize-none rounded-none"
+                  className="w-full pb-3 pt-1 bg-transparent border-b-2 border-dashed border-neutral-300 dark:border-neutral-800 text-black dark:text-white placeholder:text-neutral-400/50 font-mono text-base sm:text-lg focus:outline-none focus:border-[#80eb34] transition-colors resize-none rounded-none"
                 />
               </div>
 
@@ -325,22 +413,19 @@ export default function Contact() {
                     Budget Range
                   </label>
                   <div className="relative">
-                    <select
+                    <SketchSelect
                       value={budget}
-                      onChange={(e) => setBudget(e.target.value)}
-                      className="w-full pb-3 pt-1 bg-transparent border-b border-neutral-300 dark:border-neutral-800 text-black dark:text-white font-mono text-sm sm:text-base focus:outline-none focus:border-[#80eb34] transition-colors appearance-none cursor-pointer rounded-none"
-                    >
-                      <option value="" className="dark:bg-[#151515]">Select budget (Optional)</option>
-                      <option value="under-10k" className="dark:bg-[#151515]">Under ₹10k</option>
-                      <option value="10k-25k" className="dark:bg-[#151515]">₹10k – ₹25k</option>
-                      <option value="25k-50k" className="dark:bg-[#151515]">₹25k – ₹50k</option>
-                      <option value="50k-1L" className="dark:bg-[#151515]">₹50k – ₹1L</option>
-                      <option value="1L-plus" className="dark:bg-[#151515]">₹1L+</option>
-                      <option value="not-sure" className="dark:bg-[#151515]">Not sure yet</option>
-                    </select>
-                    <span className="absolute right-0 bottom-3 text-xs pointer-events-none text-neutral-400">
-                      ▼
-                    </span>
+                      onChange={setBudget}
+                      placeholder="Select budget (Optional)"
+                      options={[
+                        { value: "under-10k", label: "Under ₹10k" },
+                        { value: "10k-25k", label: "₹10k – ₹25k" },
+                        { value: "25k-50k", label: "₹25k – ₹50k" },
+                        { value: "50k-1L", label: "₹50k – ₹1L" },
+                        { value: "1L-plus", label: "₹1L+" },
+                        { value: "not-sure", label: "Not sure yet" },
+                      ]}
+                    />
                   </div>
                 </div>
 
@@ -349,20 +434,17 @@ export default function Contact() {
                     Timeline
                   </label>
                   <div className="relative">
-                    <select
+                    <SketchSelect
                       value={timeline}
-                      onChange={(e) => setTimeline(e.target.value)}
-                      className="w-full pb-3 pt-1 bg-transparent border-b border-neutral-300 dark:border-neutral-800 text-black dark:text-white font-mono text-sm sm:text-base focus:outline-none focus:border-[#80eb34] transition-colors appearance-none cursor-pointer rounded-none"
-                    >
-                      <option value="" className="dark:bg-[#151515]">Select timeline (Optional)</option>
-                      <option value="asap" className="dark:bg-[#151515]">ASAP</option>
-                      <option value="1-2-months" className="dark:bg-[#151515]">1–2 months</option>
-                      <option value="3-plus-months" className="dark:bg-[#151515]">3+ months</option>
-                      <option value="flexible" className="dark:bg-[#151515]">Flexible</option>
-                    </select>
-                    <span className="absolute right-0 bottom-3 text-xs pointer-events-none text-neutral-400">
-                      ▼
-                    </span>
+                      onChange={setTimeline}
+                      placeholder="Select timeline (Optional)"
+                      options={[
+                        { value: "asap", label: "ASAP" },
+                        { value: "1-2-months", label: "1–2 months" },
+                        { value: "3-plus-months", label: "3+ months" },
+                        { value: "flexible", label: "Flexible" },
+                      ]}
+                    />
                   </div>
                 </div>
               </div>
@@ -372,7 +454,7 @@ export default function Contact() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-[#80eb34] disabled:opacity-60 text-black font-norwester text-lg uppercase tracking-widest px-10 py-4 rounded-2xl hover:-translate-y-1 hover:shadow-lg hover:shadow-[#80eb34]/30 active:translate-y-0 disabled:hover:translate-y-0 disabled:cursor-not-allowed transition-all duration-300 cursor-pointer"
+                  className="sketch-button w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-[#80eb34] disabled:opacity-60 text-black font-norwester text-lg uppercase tracking-widest px-10 py-4 hover:-translate-y-1 hover:shadow-lg hover:shadow-[#80eb34]/30 active:translate-y-0 disabled:hover:translate-y-0 disabled:cursor-not-allowed transition-all duration-300 cursor-pointer"
                 >
                   {isSubmitting ? (
                     <>
@@ -390,7 +472,7 @@ export default function Contact() {
 
         {/* Bottom Horizontal Process Strip */}
         <motion.div
-          className="pt-16 border-t border-neutral-200 dark:border-neutral-800 flex flex-col gap-10"
+          className="sketch-rule pt-16 border-neutral-200 dark:border-neutral-800 flex flex-col gap-10"
           variants={fadeUp}
           custom={4}
           initial="hidden"

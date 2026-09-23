@@ -60,11 +60,11 @@ export const socialLinks = [
 
 export function Footer() {
   return (
-    <footer className="w-full bg-[#101110] text-white transition-colors duration-500 dark:bg-[#080908]">
+    <footer className="w-full border-t-2 border-dashed border-[#80eb34]/50 bg-[#101110] text-white transition-colors duration-500 dark:bg-[#080908]">
       <div className="mx-auto max-w-7xl px-6 py-16 md:px-12 md:py-24">
         <div className="grid gap-16 lg:grid-cols-[1.2fr_1fr] lg:gap-24">
           <div className="flex flex-col items-start">
-            <h2 className="max-w-xl font-norwester text-5xl uppercase leading-[0.88] tracking-[0.01em] text-white sm:text-7xl md:text-8xl">
+            <h2 className="sketch-underline max-w-xl font-norwester text-5xl uppercase leading-[0.88] tracking-[0.01em] text-white sm:text-7xl md:text-8xl">
               Let&apos;s <span className="text-[#80eb34]">talk.</span>
             </h2>
             <p className="mt-7 max-w-md font-balgin text-base leading-[1.65] text-white/60 md:text-lg">
@@ -74,7 +74,7 @@ export function Footer() {
               href="https://mail.google.com/mail/?view=cm&fs=1&to=abdullahbuilds786%40gmail.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="group mt-9 flex max-w-full items-center gap-3 border-b border-white/25 pb-3 font-mono text-sm tracking-[0.03em] text-white transition-colors hover:border-[#80eb34] hover:text-[#80eb34] md:text-base"
+              className="group sketch-rule mt-9 flex max-w-full items-center gap-3 border-b border-white/25 pb-3 font-mono text-sm tracking-[0.03em] text-white transition-colors hover:border-[#80eb34] hover:text-[#80eb34] md:text-base"
             >
               <span className="truncate">abdullahbuilds786@gmail.com</span>
               <span className="text-[#80eb34] transition-transform group-hover:translate-x-1">-&gt;</span>
@@ -116,7 +116,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-20 border-t border-white/15 pt-5">
+        <div className="sketch-rule mt-20 border-white/15 pt-5">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
             <p className="font-norwester text-3xl tracking-[0.03em] text-white/90 md:text-5xl">ABDULLAH<span className="text-[#80eb34]">.DEV</span></p>
             <p className="font-mono text-[10px] font-medium uppercase tracking-[0.16em] text-white/35">© {new Date().getFullYear()} / Built with intent</p>
