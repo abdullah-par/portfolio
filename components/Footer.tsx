@@ -65,7 +65,7 @@ export function Footer() {
         <div className="grid gap-16 lg:grid-cols-[1.2fr_1fr] lg:gap-24">
           <div className="flex flex-col items-start">
             <h2 className="sketch-underline max-w-xl font-norwester text-5xl uppercase leading-[0.88] tracking-[0.01em] text-white sm:text-7xl md:text-8xl">
-              Let&apos;s <span className="text-[#80eb34]">talk.</span>
+              Let&apos;s <span className="text-[#80eb34]">talk</span>
             </h2>
             <p className="mt-7 max-w-md font-balgin text-base leading-[1.65] text-white/60 md:text-lg">
               Have a product, process, or idea that needs a better system? Tell me what you are building.
