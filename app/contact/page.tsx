@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, Suspense } from "react";
+import { useSearchParams } from "next/navigation";
 import { motion, type Variants } from "framer-motion";
 import { socialLinks } from "@/components/Footer";
 
@@ -91,9 +92,18 @@ function SketchSelect({
   );
 }
 
-export default function Contact() {
+function ContactFormInner() {
+  const searchParams = useSearchParams();
+  const serviceParam = searchParams.get("service");
+
   const [selectedService, setSelectedService] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
+
+  useEffect(() => {
+    if (serviceParam && ["web", "automation", "ai", "other"].includes(serviceParam)) {
+      setSelectedService(serviceParam);
+    }
+  }, [serviceParam]);
 
   // Form states
   const [name, setName] = useState("");
@@ -528,5 +538,13 @@ export default function Contact() {
 
       </main>
     </div>
+  );
+}
+
+export default function Contact() {
+  return (
+    <Suspense fallback={<div className="min-h-screen pt-44 flex items-center justify-center font-mono text-xs uppercase tracking-widest text-neutral-400">Loading conversation...</div>}>
+      <ContactFormInner />
+    </Suspense>
   );
 }

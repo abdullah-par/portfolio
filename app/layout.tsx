@@ -47,6 +47,16 @@ export const metadata: Metadata = {
       "Modern web products, workflow automation and practical AI systems.",
     type: "website",
   },
+  icons: {
+    icon: [
+      {
+        url: "/icon.jpg",
+        type: "image/jpeg",
+      },
+    ],
+    shortcut: "/icon.jpg",
+    apple: "/icon.jpg",
+  },
 };
 
 export default function RootLayout({
